@@ -1,0 +1,30 @@
+"use strict";
+
+const express = require('express');
+const app = express();
+var bodyParser = require('body-parser');
+var path = require('path');
+
+// Get access to use the JSON body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(function(req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Cache-Control', 'no-cache');
+  next();
+});
+
+
+app.use('/', express.static(path.join(__dirname, 'dist')))
+
+//This is specifically setup for Heroku use
+//If port is given (Heroku) use that
+//Else, use 3000
+app.listen(process.env.PORT || 3000, function() {
+	if (process.env.PORT) {
+		console.log('Listening on port ' + process.env.PORT + '!');
+	} else {
+		console.log('Listening on port 3000!');
+	}
+});
