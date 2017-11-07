@@ -18,8 +18,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('/games', function(req, res) {
-	queryRunner.runQuery("SELECT * FROM game");
-	res.json("200");
+	queryRunner.runQuery("SELECT * FROM game", res);
 });
 
 app.use('/', express.static(path.join(__dirname, 'dist')))

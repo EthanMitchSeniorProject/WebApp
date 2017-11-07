@@ -10,8 +10,8 @@ function QueryRunner() {
         server: 'calvinscoutingreport.database.windows.net',
         options: 
         {
-            database: 'ScoutingReport'
-            , encrypt: true
+            database: 'ScoutingReport',
+            encrypt: true
         }
     };
 
@@ -31,9 +31,10 @@ function QueryRunner() {
 }
 
 //run a query
-QueryRunner.prototype.runQuery = function(query_text)
+QueryRunner.prototype.runQuery = function(query_text, res)
 { 
     console.log('Reading rows from the Table...');
+    var response = [];
 
     // Read all rows from table
     request = new Request(
@@ -41,16 +42,24 @@ QueryRunner.prototype.runQuery = function(query_text)
         function(err, rowCount, rows) 
         {
             console.log(rowCount + ' row(s) returned');
+            res.json(response);
         }
     );
 
     //TODO: This needs to be changed from print statements to be a return json object
+
+
     request.on('row', function(columns) {
+        var additionalRow = {};
         columns.forEach(function(column) {
-            console.log("%s\t%s", column.metadata.colName, column.value);
+            //console.log("%s\t%s", column.metadata.colName, column.value);
+            additionalRow[column.metadata.colName] = column.value;
         });
+        response.push(additionalRow);
     });
+
     this.connection.execSql(request);
+    return 
 }
 
 QueryRunner.prototype.say_hi = function() {
