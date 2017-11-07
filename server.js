@@ -2,8 +2,10 @@
 
 const express = require('express');
 const app = express();
+const queryRunnerExport = require('./query_runner.js');
 var bodyParser = require('body-parser');
 var path = require('path');
+const queryRunner = queryRunnerExport.buildQueryRunner();
 
 // Get access to use the JSON body parser
 app.use(bodyParser.json());
@@ -15,6 +17,10 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.get('/games', function(req, res) {
+	queryRunner.runQuery("SELECT * FROM game");
+	res.json("200");
+});
 
 app.use('/', express.static(path.join(__dirname, 'dist')))
 
