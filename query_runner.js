@@ -31,7 +31,7 @@ function QueryRunner() {
 }
 
 //run a query
-QueryRunner.prototype.runQuery = function(query_text, res)
+QueryRunner.prototype.runQuery = function(query_text, callback_fn)
 { 
     console.log('Reading rows from the Table...');
     var response = [];
@@ -42,7 +42,7 @@ QueryRunner.prototype.runQuery = function(query_text, res)
         function(err, rowCount, rows) 
         {
             console.log(rowCount + ' row(s) returned');
-            res.json(response);
+            callback_fn(response);
         }
     );
 
@@ -59,11 +59,6 @@ QueryRunner.prototype.runQuery = function(query_text, res)
     });
 
     this.connection.execSql(request);
-    return 
-}
-
-QueryRunner.prototype.say_hi = function() {
-    console.log("hi");
 }
 
 exports.buildQueryRunner = function() {
