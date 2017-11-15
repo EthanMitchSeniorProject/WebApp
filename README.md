@@ -4,7 +4,7 @@
 
 ### Soccer Endpoints
 
-1. /soccer/games
+####1. /soccer/games
 
     Return a list of all the soccer games
 
