@@ -4,33 +4,33 @@
 
 ### Soccer Endpoints
 
-*1. /soccer/games
+1. /soccer/games
 
     Return a list of all the soccer games
 
-*2. /soccer/teams
+2. /soccer/teams
 
     Return a list of all the soccer teams
     
-*3. /soccer/teams/:team_name/team_id
+3. /soccer/teams/:team_name/team_id
 
     Send in team_name as a parameter
 
     Return team_id based on the team_name
     
-*4. /soccer/teams/:team_id/players
+4. /soccer/teams/:team_id/players
 
     Send in team_id as a parameter
 
     Return a list of all the players from that team
 
-*5. /soccer/teams/:team_id/games
+5. /soccer/teams/:team_id/games
 
     Send in team_id as a parameter
 
     Return a list of all the games that team was a part of
 
-*6. /soccer/players/:player_id/player_games
+6. /soccer/players/:player_id/player_games
 
     Send in player_id as a parameter
 
