@@ -208,6 +208,77 @@ app.get('/vball/players/:player_name/player_id', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//18
+app.get('/vball/team/:team_id/:player_id/:number_games/rotation_trends', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT * FROM vball_play WHERE team_id = " + req.params.team_id + " AND server_id = " +req.params.player_id + ";",
+		send_data_callback);
+})
+
+//19
+app.get('vball/team/:team_id/:player_id/rotation_trends', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT * FROM vball_play WHERE team_id = " + req.params.team_id + " AND server_id = " +req.params.player_id + ";",
+		send_data_callback);
+})
+
+//20
+//Kills + service aces + block solos + ½ block assists = points
+app.get('vball/team/:team_id/:number_players/top_players', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT TOP " + req.params.number_players + " * FROM vball_player WHERE school_id = " + req.params.team_id + " ORDER BY points DESC;",
+		send_data_callback);
+})
+
+//21
+app.get('vball/team/:team_id/:number_players/hitting_errors', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT TOP " + req.params.number_players + " * FROM vball_player WHERE school_id = " + req.params.team_id + " ORDER BY errors DESC;",
+		send_data_callback);
+})
+
+//22
+app.get('vball/team/:team_id/:number_players/digs', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT TOP " + req.params.number_players + " * FROM vball_player WHERE school_id = " + req.params.team_id + " ORDER BY digs DESC;",
+		send_data_callback);
+})
+
+//23
+app.get('vball/team/:team_id/:number_players/assists', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT TOP " + req.params.number_players + " * FROM vball_player WHERE school_id = " + req.params.team_id + " ORDER BY assists DESC;",
+		send_data_callback);
+})
+
+//24
+app.get('vball/team/:team_id/:number_players/kills', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT TOP " + req.params.number_players + " * FROM vball_player WHERE school_id = " + req.params.team_id + " ORDER BY kills DESC;",
+		send_data_callback);
+})
+
 app.use('/', express.static(path.join(__dirname, 'dist')))
 
 //This is specifically setup for Heroku use
