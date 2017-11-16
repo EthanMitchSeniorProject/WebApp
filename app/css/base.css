@@ -1,0 +1,21 @@
+/*
+ * base.css adds CSS style to the Calvin Scouting Report Web Application
+ *      Created by: Ethan Clark, Mitch Stark
+ *      2017 @ Calvin College
+ *      CS 396/398 Senior Project
+ *      Calvin Maroon - background: #460101;
+ *      Calvin Gold - background: #a77a00;    
+ *      
+ */
+
+header {
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+}
+
+body {
+    background: #dba61e;
+}

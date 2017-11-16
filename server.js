@@ -17,14 +17,20 @@ app.use(function(req, res, next) {
   next();
 });
 
+/*
+--------------------------------------Soccer Routes----------------------------------------------
+*/
+
+//1
 app.get('/soccer/games', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
 	};
 
 	queryRunner.runQuery("SELECT * FROM game;", send_data_callback);
-});
+})
 
+//2
 app.get('/soccer/teams', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -33,6 +39,7 @@ app.get('/soccer/teams', function(req, res) {
 	queryRunner.runQuery("SELECT * FROM team;", send_data_callback);
 })
 
+//3
 app.get('/soccer/teams/:team_name/team_id', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -44,6 +51,7 @@ app.get('/soccer/teams/:team_name/team_id', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//4
 app.get('/soccer/teams/:team_id/players', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -53,6 +61,7 @@ app.get('/soccer/teams/:team_id/players', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//5
 app.get('/soccer/teams/:team_id/games', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -62,6 +71,7 @@ app.get('/soccer/teams/:team_id/games', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//6
 app.get('/soccer/players/:player_id/player_games', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -71,6 +81,7 @@ app.get('/soccer/players/:player_id/player_games', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//7
 app.get('/soccer/players/:player_name/player_id', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -80,6 +91,7 @@ app.get('/soccer/players/:player_name/player_id', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//8
 app.get('/soccer/teams/:team_id/leading_scorers', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -89,6 +101,7 @@ app.get('/soccer/teams/:team_id/leading_scorers', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//9
 app.get('/soccer/teams/:team_id/starters', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -103,6 +116,7 @@ app.get('/soccer/teams/:team_id/starters', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback)
 })
 
+//10
 app.get('/soccer/players/:player_id/:number_games/trend', function(req, res) {
 	//TODO: Eventually this query should use a date rather than game_id to order
 	let send_data_callback = function(response) {
@@ -119,6 +133,7 @@ app.get('/soccer/players/:player_id/:number_games/trend', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//11
 app.get('/soccer/teams/:team_id/:number_games/trend', function(req, res) {
 	//TODO: Eventually this query should use a date rather than game_id to order
 	//Returns most recent events
@@ -139,20 +154,20 @@ app.get('/soccer/teams/:team_id/:number_games/trend', function(req, res) {
 })
 
 /*
-
-
 --------------------------------------Volleyball Routes----------------------------------------------
 Not working: vball/teams/0/games
 */
 
+//12
 app.get('/vball/games', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
 	};
 
 	queryRunner.runQuery("SELECT * FROM vball_game;", send_data_callback);
-});
+})
 
+//13
 app.get('/vball/teams', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -161,6 +176,7 @@ app.get('/vball/teams', function(req, res) {
 	queryRunner.runQuery("SELECT * FROM vball_team;", send_data_callback);
 })
 
+//14
 app.get('/vball/teams/:team_name/team_id', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -172,6 +188,7 @@ app.get('/vball/teams/:team_name/team_id', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//15
 app.get('/vball/teams/:team_id/players', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -181,6 +198,7 @@ app.get('/vball/teams/:team_id/players', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//16
 app.get('/vball/teams/:team_id/games', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -190,6 +208,7 @@ app.get('/vball/teams/:team_id/games', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//17
 app.get('/vball/players/:player_id/player_games', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -199,12 +218,86 @@ app.get('/vball/players/:player_id/player_games', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//18
 app.get('/vball/players/:player_name/player_id', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
 	}
 
 	let query = "SELECT id FROM vball_player WHERE name = '" + req.params.player_name + "';";
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+//19
+app.get('/vball/teams/:team_id/:player_id/:number_games/rotation_trends', function(req, res) {
+	//TODO: eventually, this will need to only search for the past number_games
+	//		given in the parameter list
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT * FROM vball_play WHERE team_id = " + req.params.team_id + " AND server_id = " + req.params.player_id + ";";
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+//20
+app.get('/vball/teams/:team_id/:player_id/rotation_trends', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT * FROM vball_play WHERE team_id = " + req.params.team_id + " AND server_id = " + req.params.player_id + ";";
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+//21
+//Kills + service aces + block solos + ½ block assists = points
+app.get('/vball/teams/:team_id/:number_players/top_players', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT TOP " + req.params.number_players + " * FROM vball_player WHERE team_id = " + req.params.team_id + " ORDER BY points DESC;";
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+//22
+app.get('/vball/teams/:team_id/:number_players/hitting_errors', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT TOP " + req.params.number_players + " * FROM vball_player WHERE team_id = " + req.params.team_id + " ORDER BY errors DESC;"
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+//23
+app.get('/vball/teams/:team_id/:number_players/digs', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT TOP " + req.params.number_players + " * FROM vball_player WHERE team_id = " + req.params.team_id + " ORDER BY digs DESC;"
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+//24
+app.get('/vball/teams/:team_id/:number_players/assists', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT TOP " + req.params.number_players + " * FROM vball_player WHERE team_id = " + req.params.team_id + " ORDER BY assists DESC;"
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+//25
+app.get('/vball/teams/:team_id/:number_players/kills', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT TOP " + req.params.number_players + " * FROM vball_player WHERE team_id = " + req.params.team_id + " ORDER BY kills DESC;"
 	queryRunner.runQuery(query, send_data_callback);
 })
 
