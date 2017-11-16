@@ -61,7 +61,6 @@ app.get('/soccer/teams/:team_id/players', function(req, res) {
 })
 
 app.get('/soccer/teams/:team_id/games', function(req, res) {
-	//TODO
 	let send_data_callback = function(response) {
 		res.json(response);
 	}
@@ -71,7 +70,76 @@ app.get('/soccer/teams/:team_id/games', function(req, res) {
 })
 
 app.get('/soccer/players/:player_id/player_games', function(req, res) {
-	//TODO
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT * FROM player_game WHERE player_id = " + req.params.player_id + ";", send_data_callback);
+})
+
+app.get('/soccer/players/:player_name/player_id', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT id FROM player WHERE name = '" + req.params.player_name + "';", send_data_callback);
+})
+
+app.get('/soccer/teams/:team_id/leading_scorers', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT TOP 5 * FROM player WHERE team_id = '" + req.params.team_id + "' ORDER BY points DESC;", send_data_callback)
+})
+
+app.get('/soccer/teams/:team_id/starters', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "\
+	SELECT name, games_started / games_played as starting_ratio\
+	FROM player\
+	WHERE team_id = " + req.params.team_id + " \
+	AND games_played > 0\
+	"
+	queryRunner.runQuery(query, send_data_callback)
+})
+
+app.get('/soccer/players/:player_id/:number_games/trend', function(req, res) {
+	//TODO: Eventually this query should use a date rather than game_id to order
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "\
+	SELECT TOP " + req.params.number_games + " p.name, p.id, pg.game_id, pg.goals, pg.assists, pg.starts \
+	FROM player p, player_game pg \
+	WHERE p.id = pg.player_id \
+	AND p.id = " + req.params.player_id + " \
+	ORDER BY pg.game_id DESC;"
+
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+app.get('/soccer/teams/:team_id/:number_games/trend', function(req, res) {
+	//TODO: Eventually this query should use a date rather than game_id to order
+	//Returns most recent events
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "\
+	SELECT TOP " + req.params.number_games + " t.id AS team_id, t.school_name as school_name, g.id as game_id, g.home_team as home_team, g.away_team as away_team, e.team_id as event_team, e.time_of_event as event_time, e.description_event as description \
+	FROM team t, game g, event e \
+	WHERE (t.id = g.home_team OR t.id = g.away_team) \
+	AND t.id = " + req.params.team_id + " \
+	AND e.game_id = g.id \
+	ORDER BY e.game_id DESC;\
+	"
+
+	queryRunner.runQuery(query, send_data_callback);
 })
 
 app.use('/', express.static(path.join(__dirname, 'dist')))
