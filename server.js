@@ -34,21 +34,14 @@ app.get('/soccer/teams', function(req, res) {
 })
 
 app.get('/soccer/teams/:team_name/team_id', function(req, res) {
-	let find_team_id_callback = function(response) {
-		
-		if (response.length != 1) {
-			let message = "Unexpected number [" + response.length + "] of teams found with name [" + req.params.team_name + "]";
-			console.log(message);
-			res.json(message);
-			return;
-		}
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
 
-		console.log("Found one team object with matching name: " + JSON.stringify(response[0]));
-		let team_id = response[0]["id"];
-		res.json(team_id);
-	};
-
-	queryRunner.runQuery("SELECT * FROM team WHERE school_name = '" + req.params.team_name + "';", find_team_id_callback);
+	let query = "SELECT * \
+				FROM team \
+				WHERE school_name = '" + req.params.team_name + "';";
+	queryRunner.runQuery(query, send_data_callback);
 })
 
 app.get('/soccer/teams/:team_id/players', function(req, res) {
@@ -56,8 +49,8 @@ app.get('/soccer/teams/:team_id/players', function(req, res) {
 		res.json(response);
 	}
 
-	console.log("SELECT * FROM player WHERE school_id = " + req.params.team_id + ";")
-	queryRunner.runQuery("SELECT * FROM player WHERE team_id = " + req.params.team_id + ";", send_data_callback);
+	let query = "SELECT * FROM player WHERE team_id = " + req.params.team_id + ";"
+	queryRunner.runQuery(query, send_data_callback);
 })
 
 app.get('/soccer/teams/:team_id/games', function(req, res) {
@@ -65,8 +58,8 @@ app.get('/soccer/teams/:team_id/games', function(req, res) {
 		res.json(response);
 	}
 
-	queryRunner.runQuery("SELECT * FROM game WHERE home_team = " + req.params.team_id + " OR away_team = " + req.params.team_id + ";", 
-		send_data_callback);
+	let query = "SELECT * FROM game WHERE home_team = " + req.params.team_id + " OR away_team = " + req.params.team_id + ";"
+	queryRunner.runQuery(query, send_data_callback);
 })
 
 app.get('/soccer/players/:player_id/player_games', function(req, res) {
@@ -74,7 +67,8 @@ app.get('/soccer/players/:player_id/player_games', function(req, res) {
 		res.json(response);
 	}
 
-	queryRunner.runQuery("SELECT * FROM player_game WHERE player_id = " + req.params.player_id + ";", send_data_callback);
+	let query = "SELECT * FROM player_game WHERE player_id = " + req.params.player_id + ";"
+	queryRunner.runQuery(query, send_data_callback);
 })
 
 app.get('/soccer/players/:player_name/player_id', function(req, res) {
@@ -82,7 +76,8 @@ app.get('/soccer/players/:player_name/player_id', function(req, res) {
 		res.json(response);
 	}
 
-	queryRunner.runQuery("SELECT id FROM player WHERE name = '" + req.params.player_name + "';", send_data_callback);
+	let query = "SELECT id FROM player WHERE name = '" + req.params.player_name + "';";
+	queryRunner.runQuery(query, send_data_callback);
 })
 
 app.get('/soccer/teams/:team_id/leading_scorers', function(req, res) {
@@ -90,7 +85,8 @@ app.get('/soccer/teams/:team_id/leading_scorers', function(req, res) {
 		res.json(response);
 	}
 
-	queryRunner.runQuery("SELECT TOP 5 * FROM player WHERE team_id = '" + req.params.team_id + "' ORDER BY points DESC;", send_data_callback)
+	let query = "SELECT TOP 5 * FROM player WHERE team_id = '" + req.params.team_id + "' ORDER BY points DESC;";
+	queryRunner.runQuery(query, send_data_callback);
 })
 
 app.get('/soccer/teams/:team_id/starters', function(req, res) {
@@ -139,6 +135,76 @@ app.get('/soccer/teams/:team_id/:number_games/trend', function(req, res) {
 	ORDER BY e.game_id DESC;\
 	"
 
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+/*
+
+
+--------------------------------------Volleyball Routes----------------------------------------------
+Not working: vball/teams/0/games
+*/
+
+app.get('/vball/games', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	};
+
+	queryRunner.runQuery("SELECT * FROM vball_game;", send_data_callback);
+});
+
+app.get('/vball/teams', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	};
+
+	queryRunner.runQuery("SELECT * FROM vball_team;", send_data_callback);
+})
+
+app.get('/vball/teams/:team_name/team_id', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT * \
+				FROM vball_team \
+				WHERE school_name = '" + req.params.team_name + "';";
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+app.get('/vball/teams/:team_id/players', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT * FROM vball_player WHERE team_id = " + req.params.team_id + ";"
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+app.get('/vball/teams/:team_id/games', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT * FROM vball_game WHERE home_team = " + req.params.team_id + " OR away_team = " + req.params.team_id + ";"
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+app.get('/vball/players/:player_id/player_games', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT * FROM vball_player_game WHERE player_id = " + req.params.player_id + ";"
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+app.get('/vball/players/:player_name/player_id', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT id FROM vball_player WHERE name = '" + req.params.player_name + "';";
 	queryRunner.runQuery(query, send_data_callback);
 })
 
