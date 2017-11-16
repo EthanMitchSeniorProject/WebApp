@@ -42,25 +42,25 @@
 
     Return player_id for the given player
  
-#### 8. /soccer/team/:team_id/leading_scorers
+#### 8. /soccer/teams/:team_id/leading_scorers
 
     Send in team_id as a parameter
 
     Return a list of the team's leading scorings
 
-#### 9. /soccer/team/:team_id/starters
+#### 9. /soccer/teams/:team_id/starters
 
     Send in team_id as a parameter
 
     Return a list of the team's starting lineup
 
-#### 10. /soccer/player/:player_id/:number_games/trend
+#### 10. /soccer/players/:player_id/:number_games/trend
 
     Send in player_id and the number of games as parameters
 
     Return player's trends for the past number of games given
 
-#### 11. /soccer/team/:team_id/:number_games/trend
+#### 11. /soccer/teams/:team_id/:number_games/trend
 
     Send in team_id and the number of games as parameters
 
