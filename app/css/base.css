@@ -35,3 +35,17 @@ body {
     background: #dba61e;
     font-family: serif;
 }
+
+.tab_button {
+    background-color: white;
+    border: none;
+    color: #460101;
+    padding: 15px 32px;
+    width: 49%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px;
+    border-radius: 25px;
+}
