@@ -10,12 +10,42 @@
 
 header {
     text-align: center;
+    color: white;
+    height: 50px;
+    font-size: 40px;
+    font-weight: bold;
+    background: #460101;
 }
 
 footer {
     text-align: center;
+    color: white;
+    height: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    background: #460101;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
 }
 
 body {
     background: #dba61e;
+    font-family: serif;
+}
+
+.tab_button {
+    background-color: white;
+    border: none;
+    color: #460101;
+    padding: 15px 32px;
+    width: 49%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px;
+    border-radius: 25px;
 }
