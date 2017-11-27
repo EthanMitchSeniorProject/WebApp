@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import styles from '../../css/drop_down.css';
+import base_styles from '../../css/base.css';
 
 class TeamSelector extends React.Component {
     constructor(props) {
@@ -38,7 +39,9 @@ class TeamSelector extends React.Component {
         return this.state.teams.map(function(team) {
             console.log("rendering: " + team);
             return (
-                <input className="select_button" type="submit" value={team}/>
+                <div className="select_div">
+                    <input className={base_styles.select_button} type="submit" value={team}/><br/>
+                </div>
             )
         })
     }

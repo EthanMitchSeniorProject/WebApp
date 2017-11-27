@@ -49,3 +49,13 @@ body {
     margin: 4px;
     border-radius: 25px;
 }
+
+.select_button {
+    background-color: #460101;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    padding: 15px 32px;
+    min-width: 160px;
+}
