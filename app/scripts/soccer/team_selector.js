@@ -36,11 +36,12 @@ class TeamSelector extends React.Component {
 
 
     renderTeams = () => {
+        let _this = this;
         return this.state.teams.map(function(team) {
             console.log("rendering: " + team);
             return (
                 <div className="select_div">
-                    <input className={base_styles.select_button} type="submit" value={team}/><br/>
+                    <input className={base_styles.select_button} type="submit" value={team} onClick={_this.props.setTeam}/><br/>
                 </div>
             )
         })
