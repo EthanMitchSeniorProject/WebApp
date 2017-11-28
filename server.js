@@ -108,7 +108,7 @@ app.get('/soccer/teams/:team_id/starters', function(req, res) {
 	}
 
 	let query = "\
-	SELECT name, games_started / games_played as starting_ratio\
+	SELECT name, num, games_started / games_played as starting_ratio\
 	FROM player\
 	WHERE team_id = " + req.params.team_id + " \
 	AND games_played > 0\
