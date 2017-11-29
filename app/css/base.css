@@ -36,6 +36,15 @@ body {
     font-family: serif;
 }
 
+table, th, td {
+    border: solid 1px black;
+}
+
+td, th {
+    width: 150px;
+    text-align: center;
+}
+
 .tab_button {
     background-color: white;
     border: none;
