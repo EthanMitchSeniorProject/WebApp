@@ -31,6 +31,7 @@ class StarterView extends React.Component {
                                 <th>Number</th>
                             </tr>
                             {
+                                //starter_list.filter(player_json => player_json['starting_ratio'] == 1).map(function(player_json) {
                                 starter_list.filter(player_json => player_json['starting_ratio'] == 1).map(function(player_json) {
                                     return (
                                         <tr>
