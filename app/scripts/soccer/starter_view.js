@@ -26,6 +26,7 @@ class StarterView extends React.Component {
                  (
                     <div className="starter_table_div">
                         <table className="starter_table">
+                            <tbody>
                             <tr>
                                 <th>Name</th>
                                 <th>Number</th>
@@ -41,6 +42,7 @@ class StarterView extends React.Component {
                                     )
                                 })
                             }
+                            </tbody>
                         </table>
                     </div>
                 )                  

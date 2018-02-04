@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import TeamSelector from './team_selector.js';
 import StarterView from './starter_view.js';
+import PlayersView from './players_view.js';
 
 class SoccerView extends React.Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class SoccerView extends React.Component {
         return (
             <div className="soccer_view">
                 <TeamSelector setTeam={this.setSoccerViewState}/>
+                <PlayersView team={this.state.team}/>
                 <StarterView team={this.state.team}/>
             </div>
         )
