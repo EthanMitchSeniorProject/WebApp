@@ -21,7 +21,6 @@ class StarterView extends React.Component {
         $.getJSON('/soccer/teams/' + this.props.team + '/team_id', (response_arr) => {
             let team_id = response_arr[0]['id'];
             $.getJSON('/soccer/teams/' + team_id + '/starters', (starter_list) => {
-                console.log("starters: " + JSON.stringify(starter_list));
                 this.setState({starter_jsx: 
                  (
                     <div className="starter_table_div">

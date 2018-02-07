@@ -11,6 +11,10 @@ class PlayersView extends React.Component {
         this.most_recent_team = props.team;
     }
 
+    viewPlayerData = () => {
+        console.log("Click!");
+    }
+
     getPlayers = () => {
         if ((this.state.player_jsx != null) && (this.props.team == this.most_recent_team)) {
             return;
@@ -21,7 +25,6 @@ class PlayersView extends React.Component {
         $.getJSON('/soccer/teams/' + this.props.team + '/team_id', (response_arr) => {
             let team_id = response_arr[0]['id'];
             $.getJSON('/soccer/teams/' + team_id + '/players', (player_list) => {
-                console.log("players: " + JSON.stringify(player_list));
                 this.setState({player_jsx: 
                  (
                     <div className="player_table_div">
@@ -30,13 +33,17 @@ class PlayersView extends React.Component {
                             <tr>
                                 <th>Name</th>
                                 <th>Number</th>
+                                <th>View More Detail</th>
                             </tr>
                             {
-                                player_list.map(function(player_json) {
+                                player_list.map( (player_json) => {
                                     return (
                                         <tr>
                                             <td>{player_json['name']}</td>
                                             <td>{player_json['num']}</td>
+                                            <td>
+                                                <button className={styles.select_button} id={player_json['id']} onClick={this.viewPlayerData}>View Player Data</button>
+                                            </td>
                                         </tr>
                                     )
                                 })
