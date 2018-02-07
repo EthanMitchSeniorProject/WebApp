@@ -24,7 +24,6 @@ footer {
     font-size: 20px;
     font-weight: bold;
     background: #460101;
-    position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
@@ -34,6 +33,15 @@ footer {
 body {
     background: #dba61e;
     font-family: serif;
+}
+
+table, th, td {
+    border: solid 1px black;
+}
+
+td, th {
+    width: 150px;
+    text-align: center;
 }
 
 .tab_button {
@@ -48,4 +56,14 @@ body {
     font-size: 16px;
     margin: 4px;
     border-radius: 25px;
+}
+
+.select_button {
+    background-color: #460101;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    padding: 15px 32px;
+    min-width: 160px;
 }

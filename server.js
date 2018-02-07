@@ -104,11 +104,14 @@ app.get('/soccer/teams/:team_id/leading_scorers', function(req, res) {
 //9
 app.get('/soccer/teams/:team_id/starters', function(req, res) {
 	let send_data_callback = function(response) {
+		for(var i = 0; i < response.length; i++) {
+			response[i].starting_ratio = Math.round(response[i].games_started / response[i].games_played);
+		}
 		res.json(response);
 	}
 
 	let query = "\
-	SELECT name, games_started / games_played as starting_ratio\
+	SELECT name, num, games_started, games_played\
 	FROM player\
 	WHERE team_id = " + req.params.team_id + " \
 	AND games_played > 0\
