@@ -33,7 +33,8 @@ class PlayersView extends React.Component {
                             <tr>
                                 <th>Name</th>
                                 <th>Number</th>
-                                <th>View More Detail</th>
+                                <th>Goals</th>
+                                <th>Assists</th>
                             </tr>
                             {
                                 player_list.map( (player_json) => {
@@ -41,9 +42,8 @@ class PlayersView extends React.Component {
                                         <tr>
                                             <td>{player_json['name']}</td>
                                             <td>{player_json['num']}</td>
-                                            <td>
-                                                <button className={styles.select_button} id={player_json['id']} onClick={this.viewPlayerData}>View Player Data</button>
-                                            </td>
+                                            <td>{player_json['goals']}</td>
+                                            <td>{player_json['assists']}</td>
                                         </tr>
                                     )
                                 })

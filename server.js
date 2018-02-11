@@ -52,12 +52,27 @@ app.get('/soccer/teams/:team_name/team_id', function(req, res) {
 })
 
 //4
+/* Query:
+	SELECT *
+	FROM player p JOIN (SELECT player_id, SUM(goals) as goals, SUM(assists) as assists
+			FROM player_game
+			GROUP BY player_id) pg ON p.id = pg.player_id 
+	WHERE team_id = 0
+	AND games_played > 0;
+*/
 app.get('/soccer/teams/:team_id/players', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
 	}
 
-	let query = "SELECT * FROM player WHERE team_id = " + req.params.team_id + ";"
+	let query = "SELECT *\
+				FROM player p JOIN (\
+					SELECT player_id, SUM(goals) as goals, SUM(assists) as assists\
+					FROM player_game\
+					GROUP BY player_id) pg\
+				ON p.id = pg.player_id\
+				WHERE team_id = " + req.params.team_id + "\
+				AND games_played > 0;"
 	queryRunner.runQuery(query, send_data_callback);
 })
 
