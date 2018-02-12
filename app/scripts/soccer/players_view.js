@@ -25,6 +25,7 @@ class PlayersView extends React.Component {
         $.getJSON('/soccer/teams/' + this.props.team + '/team_id', (response_arr) => {
             let team_id = response_arr[0]['id'];
             $.getJSON('/soccer/teams/' + team_id + '/players', (player_list) => {
+                console.log("Response: " + JSON.stringify(player_list));
                 this.setState({player_jsx: 
                  (
                     <div className="player_table_div">
@@ -33,6 +34,10 @@ class PlayersView extends React.Component {
                             <tr>
                                 <th>Name</th>
                                 <th>Number</th>
+                                <th>Games Played</th>
+                                <th>Games Started</th>
+                                <th>Yellow Cards</th>
+                                <th>Red Cards</th>
                                 <th>Goals</th>
                                 <th>Assists</th>
                             </tr>
@@ -42,6 +47,10 @@ class PlayersView extends React.Component {
                                         <tr>
                                             <td>{player_json['name']}</td>
                                             <td>{player_json['num']}</td>
+                                            <td>{player_json['games_played']}</td>
+                                            <td>{player_json['games_started']}</td>
+                                            <td>{player_json['yellow_cards']}</td>
+                                            <td>{player_json['red_cards']}</td>
                                             <td>{player_json['goals']}</td>
                                             <td>{player_json['assists']}</td>
                                         </tr>
