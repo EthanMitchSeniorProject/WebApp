@@ -9,20 +9,20 @@ class TabView extends React.Component {
 
     handleSoccerClick = (event) => {
         event.preventDefault();
-        this.props.setState({"sport": "soccer"});
+        this.props.setState({"sport": "Soccer"});
     }
 
     handleVballClick = (event) => {
         event.preventDefault();
-        this.props.setState({"sport": "vball"})
+        this.props.setState({"sport": "Volleyball"})
     }
 
     render = () => {
         return (
             <div className="tab_view">
                 <form className="sportForm">
-                    <input className={styles.tab_button} type="submit" value="soccer" onClick={this.handleSoccerClick}/>
-                    <input className={styles.tab_button} type="submit" value="vball" onClick={this.handleVballClick}/>
+                    <input className={styles.tab_button} type="submit" value="Soccer" onClick={this.handleSoccerClick}/>
+                    <input className={styles.tab_button} type="submit" value="Volleyball" onClick={this.handleVballClick}/>
                 </form>
             </div>
         )
