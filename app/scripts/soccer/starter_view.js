@@ -7,7 +7,7 @@ class StarterView extends React.Component {
     constructor(props) {
         super(props);
         this.setState = this.setState.bind(this);
-        this.state = {"starter_jsx": null}
+        this.state = {"starter_jsx": null};
         this.most_recent_team = props.team;
     }
 

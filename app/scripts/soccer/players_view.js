@@ -25,7 +25,6 @@ class PlayersView extends React.Component {
         $.getJSON('/soccer/teams/' + this.props.team + '/team_id', (response_arr) => {
             let team_id = response_arr[0]['id'];
             $.getJSON('/soccer/teams/' + team_id + '/players', (player_list) => {
-                console.log("Response: " + JSON.stringify(player_list));
                 this.setState({player_jsx: 
                  (
                     <div className="player_table_div">
