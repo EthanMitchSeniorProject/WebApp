@@ -175,6 +175,19 @@ app.get('/soccer/teams/:team_id/:number_games/trend', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+app.get('/soccer/games/:game_id/score', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "select COUNT(team_id) as goals, team_id  \
+	from event \
+	where game_id = " + req.params.game_id + " \
+	group by team_id;";
+
+	queryRunner.runQuery(query, send_data_callback);
+})
+
 /*
 --------------------------------------Volleyball Routes----------------------------------------------
 Not working: vball/teams/0/games
