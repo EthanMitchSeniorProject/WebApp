@@ -26,10 +26,23 @@ class GameView extends React.Component {
                         <table className="game_table">
                             <tbody>
                                 <tr>
-                                    <th>Opponenent</th>
+                                    <th>Opponent</th>
                                     <th>Score</th>
                                     <th>Date</th>
+                                    <th>View More Detail</th>
                                 </tr>
+                                {
+                                    game_arr.map( (game_json) => {
+                                        return (
+                                            <tr>
+                                                <td>{game_json["opponent"]}</td>
+                                                <td>Todo</td>
+                                                <td>Todo</td>
+                                                <button className="moreDetailGame">View Game Detail</button>
+                                            </tr>
+                                        )
+                                    })
+                                }
                             </tbody>
                         </table>
                     </div>
