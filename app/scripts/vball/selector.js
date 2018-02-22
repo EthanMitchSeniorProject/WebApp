@@ -9,6 +9,7 @@ class Selector extends React.Component {
         this.setState = this.setState.bind(this);
     }
 
+    // TODO: Make the game selector reach out to database and get the games for the selected team
     render = () => {
         return (
             <div className={base_styles.selector}>
