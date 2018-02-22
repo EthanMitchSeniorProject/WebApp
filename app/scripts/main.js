@@ -37,9 +37,9 @@ class Main extends React.Component {
     }
     
     render = () => {
-        if (this.state.sport == "soccer") {
+        if (this.state.sport == "Soccer") {
             return this.renderSoccer();
-        } else if (this.state.sport == "vball") {
+        } else if (this.state.sport == "Volleyball") {
             return this.renderVball();
         } else {
             return this.renderNoSport();

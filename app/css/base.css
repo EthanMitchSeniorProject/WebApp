@@ -67,3 +67,38 @@ td, th {
     padding: 15px 32px;
     min-width: 160px;
 }
+
+.vballView {
+    display: flex;
+    flex-flow: row;
+}
+
+.selector {
+    flex: 1 1 20%;
+    order: 1;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.teamSelector {
+    order: 1;
+    flex: 1 1 15%;
+    width: 150px;
+}
+
+.rotationSelector {
+    order: 2;
+    flex: 1 1 15%;
+    width: 100px;
+}
+
+.statistics {
+    flex: 1 1 80%;
+    order: 2;
+}
+
+.vballHeader {
+    float: left;
+    padding-right: 25px;
+}
