@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import styles from '../../css/base.css';
+import GameScore from './game_score.js';
 
 class GameView extends React.Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class GameView extends React.Component {
                                         return (
                                             <tr>
                                                 <td>{game_json["opponent"]}</td>
-                                                <td>{this.state.game_scores[game_json["id"]]}</td>
+                                                <GameScore game_id={game_json["id"]} team_id={team_id}/>
                                                 <td>Todo</td>
                                                 <button className="viewGameDetail">View Game Detail</button>
                                             </tr>
