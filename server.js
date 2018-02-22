@@ -336,6 +336,26 @@ app.get('/vball/teams/:team_id/:number_players/kills', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
+//TEST ROUTES FOR ETHAN
+// DO NOT REMOVE FOR NOW
+app.get('/vball/teams/:rotation', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT COUNT(*) AS COUNT FROM vball_play WHERE rotation = " + req.params.rotation + ";";
+	queryRunner.runQuery(query, send_data_callback);
+})
+
+app.get('/vball/teams/:rotation/split', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT COUNT(*) AS COUNT, result FROM vball_play WHERE rotation = " + req.params.rotation + " GROUP BY result;";
+	queryRunner.runQuery(query, send_data_callback);
+})
+
 app.use('/', express.static(path.join(__dirname, 'dist')))
 
 //This is specifically setup for Heroku use

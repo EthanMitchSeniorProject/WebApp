@@ -82,23 +82,56 @@ td, th {
 }
 
 .teamSelector {
-    order: 1;
+    order: 2;
     flex: 1 1 15%;
     width: 150px;
 }
 
-.rotationSelector {
-    order: 2;
+.gameSelector {
+    order: 4;
     flex: 1 1 15%;
     width: 100px;
+}
+
+.rotationSelector {
+    order: 6;
+    flex: 1 1 15%;
+    width: 100px;
+}
+
+.teamSelectorLabel {
+    order: 1;
+    flex: 1 1 5%;
+}
+
+.gameSelectorLabel {
+    order: 3;
+    flex: 1 1 5%;
+}
+
+.rotationSelectorLabel {
+    order: 5;
+    flex: 1 1 5%;
 }
 
 .statistics {
     flex: 1 1 80%;
     order: 2;
+    display: flex;
+    flex-flow: column;
 }
 
 .vballHeader {
     float: left;
     padding-right: 25px;
+}
+
+.statsHeader {
+    flex: 1 1 20%;
+    order: 1;
+}
+
+.tableSection {
+    flex: 1 1 40%;
+    order: 2;
 }

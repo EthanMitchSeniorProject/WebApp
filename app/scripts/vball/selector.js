@@ -13,10 +13,17 @@ class Selector extends React.Component {
         return (
             <div className={base_styles.selector}>
                 <h1>Select Features</h1>
+                <label className={base_styles.teamSelectorLabel}>Team</label>
                 <select className={base_styles.teamSelector} onChange={this.props.setTeam}>
                     <option value="No Team Selected">--</option>
                     <option value="Calvin College">Calvin College</option>
                 </select>
+                <label className={base_styles.gameSelectorLabel}>Game</label>
+                <select className={base_styles.gameSelector} onChange={this.props.setGame}>
+                    <option value="0">--</option>
+                    <option value="1">1</option>
+                </select>
+                <label className={base_styles.rotationSelectorLabel}>Rotation</label>
                 <select className={base_styles.rotationSelector} onChange={this.props.setRotation}>
                     <option value="0">--</option>
                     <option value="1">1</option>
