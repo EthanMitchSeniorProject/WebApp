@@ -2,6 +2,7 @@ import React from 'react';
 import $ from 'jquery';
 import styles from '../../css/base.css';
 import GameScore from './game_score.js';
+import DateFormatter from '../date_formatter.js';
 
 class GameView extends React.Component {
     constructor(props) {
@@ -22,6 +23,15 @@ class GameView extends React.Component {
             let team_id = response_arr[0]['id'];
             $.getJSON("/soccer/teams/" + team_id + "/games", (game_arr) => {
                 console.log("Game response: " + JSON.stringify(game_arr));
+
+                let gameDateComparator = (a, b) => {
+                    let a_date = new Date(DateFormatter.formatDateForSorting(a["date"]));
+                    let b_date = new Date(DateFormatter.formatDateForSorting(b["date"]));
+                    console.log("Comparing dates: " + a_date + " to " + b_date);
+                    console.log("Values: " + a_date.valueOf() + " - " + b_date.valueOf());
+                    return a_date.valueOf() - b_date.valueOf();
+                }
+
                 this.setState({game_jsx:
                     <div className="game_table_div">
                         <table className="game_table">
@@ -33,12 +43,12 @@ class GameView extends React.Component {
                                     <th>View More Detail</th>
                                 </tr>
                                 {
-                                    game_arr.map( (game_json) => {
+                                    game_arr.sort(gameDateComparator).map( (game_json) => {
                                         return (
                                             <tr>
                                                 <td>{game_json["opponent"]}</td>
                                                 <GameScore game_id={game_json["id"]} team_id={team_id}/>
-                                                <td>Todo</td>
+                                                <td>{DateFormatter.formatDate(game_json["date"])}</td>
                                                 <button className="viewGameDetail">View Game Detail</button>
                                             </tr>
                                         )

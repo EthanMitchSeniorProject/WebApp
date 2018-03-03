@@ -82,7 +82,7 @@ app.get('/soccer/teams/:team_id/games', function(req, res) {
 		res.json(response);
 	}
 
-	let query = "SELECT g.id, g.home_team as home_id, g.away_team as away_id, t.school_name as opponent \
+	let query = "SELECT g.id, g.home_team as home_id, g.away_team as away_id, t.school_name as opponent, g.game_date as date \
 				FROM game g, team t \
 				WHERE (g.home_team = " + req.params.team_id + " OR g.away_team = " + req.params.team_id + ") \
 				AND (t.id = g.home_team OR t.id = g.away_team) \
