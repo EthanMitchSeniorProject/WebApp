@@ -3,12 +3,13 @@ import $ from 'jquery';
 import styles from '../../css/base.css';
 import GameScore from './game_score.js';
 import DateFormatter from '../date_formatter.js';
+import GameModal from './game_modal.js';
 
 class GameView extends React.Component {
     constructor(props) {
         super(props);
         this.setState = this.setState.bind(this);
-        this.state = {"game_jsx": null, "game_scores": {}};
+        this.state = {"game_jsx": null, "game_scores": {}, "game_modal_id": null};
         this.most_recent_team = props.team;
     }
 
@@ -62,6 +63,7 @@ class GameView extends React.Component {
 
     showGameModal = (event) => {
        console.log("Render modal here..." + event.target.value);
+       this.setState({game_modal_id: event.target.value});
     }
 
     findScore = (game_id) => {
@@ -82,6 +84,16 @@ class GameView extends React.Component {
             this.state.game_scores[game_id] = selected_team_score + " - " + opponent_score;
         })
     }
+    
+    getGameModal = () => {
+        if (this.state.game_modal_id == null) {
+            return null;
+        }
+
+        return (
+            <GameModal />
+        )
+    }
 
     render = () => {
         if (this.props.team == "") {
@@ -95,6 +107,9 @@ class GameView extends React.Component {
                 <h1>{this.props.team}: Games</h1>
                 <div className="games">
                     {this.state.game_jsx}
+                </div>
+                <div className="gameModal">
+                    {this.state.getGameModal()}
                 </div>
             </div>
         );
