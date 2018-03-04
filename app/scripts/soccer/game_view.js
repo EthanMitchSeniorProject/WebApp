@@ -27,8 +27,6 @@ class GameView extends React.Component {
                 let gameDateComparator = (a, b) => {
                     let a_date = new Date(DateFormatter.formatDateForSorting(a["date"]));
                     let b_date = new Date(DateFormatter.formatDateForSorting(b["date"]));
-                    console.log("Comparing dates: " + a_date + " to " + b_date);
-                    console.log("Values: " + a_date.valueOf() + " - " + b_date.valueOf());
                     return a_date.valueOf() - b_date.valueOf();
                 }
 
