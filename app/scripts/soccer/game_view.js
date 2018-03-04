@@ -109,7 +109,7 @@ class GameView extends React.Component {
                     {this.state.game_jsx}
                 </div>
                 <div className="gameModal">
-                    {this.state.getGameModal()}
+                    {this.getGameModal()}
                 </div>
             </div>
         );

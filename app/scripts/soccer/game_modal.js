@@ -18,7 +18,7 @@ class GameModal extends React.Component {
         super();
 
         this.state = {
-            modalIsOpen: false
+            modalIsOpen: true
         };
 
         this.openModal = this.openModal.bind(this);
@@ -40,6 +40,7 @@ class GameModal extends React.Component {
     }
 
     render() {
+        console.log("Rendering!!!")
         return (
             <div>
                 <Modal
@@ -65,3 +66,5 @@ class GameModal extends React.Component {
         );
     }
 }
+
+export default GameModal;
