@@ -47,7 +47,7 @@ class GameView extends React.Component {
                                                 <td>{game_json["opponent"]}</td>
                                                 <GameScore game_id={game_json["id"]} team_id={team_id}/>
                                                 <td>{DateFormatter.formatDate(game_json["date"])}</td>
-                                                <button className="viewGameDetail">View Game Detail</button>
+                                                <td><button className="viewGameDetail" value={game_json["id"]} onClick={this.showGameModal}>View Game Detail</button></td>
                                             </tr>
                                         )
                                     })
@@ -58,6 +58,10 @@ class GameView extends React.Component {
                 });
             });
         });
+    }
+
+    showGameModal = (event) => {
+       console.log("Render modal here..." + event.target.value);
     }
 
     findScore = (game_id) => {
@@ -74,7 +78,6 @@ class GameView extends React.Component {
                     opponent_score = score_object["goals"];
                 }
             }
-
             
             this.state.game_scores[game_id] = selected_team_score + " - " + opponent_score;
         })
