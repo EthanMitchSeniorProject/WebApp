@@ -30,6 +30,15 @@ app.get('/soccer/games', function(req, res) {
 	queryRunner.runQuery("SELECT * FROM game;", send_data_callback);
 })
 
+
+app.get('/soccer/game/:game_id', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	queryRunner.runQuery("SELECT * FROM Event where game_id = " + req.params.game_id + ";", send_data_callback);
+})
+
 //2
 app.get('/soccer/teams', function(req, res) {
 	let send_data_callback = function(response) {

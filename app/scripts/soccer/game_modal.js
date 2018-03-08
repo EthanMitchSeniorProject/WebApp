@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import $ from 'jquery';
 
 const customStyles = {
     content: {
@@ -18,7 +19,8 @@ class GameModal extends React.Component {
         super();
 
         this.state = {
-            modalIsOpen: true
+            modalIsOpen: true,
+            game_info: null
         };
 
         this.openModal = this.openModal.bind(this);
@@ -32,15 +34,58 @@ class GameModal extends React.Component {
 
     afterOpenModal() {
         // references are now sync'd and can be accessed.
-        this.subtitle.style.color = '#f00';
+        // this.subtitle.style.color = '#f00';
     }
 
     closeModal() {
         this.setState({ modalIsOpen: false });
     }
 
+    getGameLog() {
+        if (this.state.game_info != null) {
+            return;
+        }
+
+        $.getJSON('soccer/game/' + this.props.game_id, (event_array) => {
+            console.log("Got Response: " + JSON.stringify(event_array));
+            let selected_team_score = 0;
+            let opponent_score = 0;
+
+            this.setState({game_info: (
+                <div className="modalGameInfo">
+                    <table className="events">
+                        <tbody>
+                            <tr>
+                                <th>Score</th>
+                                <th>Event Description</th>
+                            </tr>
+                            {
+                                event_array.map( (event_json) => {
+
+                                    console.log(event_json.team_id + " - " + this.props.selected_team_id);
+                                    if (event_json.team_id == this.props.selected_team_id) {
+                                        selected_team_score++;
+                                    } else {
+                                        opponent_score++;
+                                    }
+
+                                    return (
+                                        <tr>
+                                            <td>{selected_team_score}-{opponent_score}</td>
+                                            <td>{event_json.description_event}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            )});
+        })
+    }
+
     render() {
-        console.log("Rendering!!!")
+        this.getGameLog();
         return (
             <div>
                 <Modal
@@ -50,17 +95,8 @@ class GameModal extends React.Component {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-
-                    <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
                     <button onClick={this.closeModal}>close</button>
-                    <div>I am a modal</div>
-                    <form>
-                        <input />
-                        <button>tab navigation</button>
-                        <button>stays</button>
-                        <button>inside</button>
-                        <button>the modal</button>
-                    </form>
+                    {this.state.game_info}
                 </Modal>
             </div>
         );

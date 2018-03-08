@@ -21,7 +21,8 @@ class GameView extends React.Component {
         this.most_recent_team = this.props.team;
 
         $.getJSON("/soccer/teams/" + this.props.team + "/team_id", (response_arr) => {
-            let team_id = response_arr[0]['id'];
+            this.state.team_id = response_arr[0]['id'];
+            let team_id = this.state.team_id;
             $.getJSON("/soccer/teams/" + team_id + "/games", (game_arr) => {
                 console.log("Game response: " + JSON.stringify(game_arr));
 
@@ -91,7 +92,7 @@ class GameView extends React.Component {
         }
 
         return (
-            <GameModal />
+            <GameModal game_id={this.state.game_modal_id} selected_team_id={this.state.team_id}/>
         )
     }
 
