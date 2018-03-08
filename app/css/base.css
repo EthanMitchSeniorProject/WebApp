@@ -90,7 +90,7 @@ td, th {
 .gameSelector {
     order: 4;
     flex: 1 1 15%;
-    width: 100px;
+    width: 150px;
 }
 
 .rotationSelector {
@@ -119,16 +119,29 @@ td, th {
     order: 2;
     display: flex;
     flex-flow: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.vballHeader {
+.vballHeaderOne {
     float: left;
     padding-right: 25px;
+    flex: 1 1 50%;
+    order: 1
+}
+
+.vballHeaderTwo {
+    float: left;
+    padding-right: 25px;
+    flex: 1 1 50%;
+    order: 2;
 }
 
 .statsHeader {
     flex: 1 1 20%;
     order: 1;
+    display: flex;
+    flex-flow: row;
 }
 
 .tableSection {
