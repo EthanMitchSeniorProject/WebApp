@@ -20,6 +20,7 @@ class GameModal extends React.Component {
 
         this.state = {
             modalIsOpen: true,
+            previous_game: null,
             game_info: null
         };
 
@@ -42,9 +43,14 @@ class GameModal extends React.Component {
     }
 
     getGameLog() {
-        if (this.state.game_info != null) {
+        console.log("Attempting..." + this.state.previous_game + " - " + this.props.game_id);
+        if (this.state.game_info != null && this.state.previous_game == this.props.game_id) {
             return;
         }
+
+        console.log("Made it past!")
+        this.state.previous_game = this.props.game_id;
+        this.state.modalIsOpen = true;
 
         $.getJSON('soccer/game/' + this.props.game_id, (event_array) => {
             console.log("Got Response: " + JSON.stringify(event_array));
