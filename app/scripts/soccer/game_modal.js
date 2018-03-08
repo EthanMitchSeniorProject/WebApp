@@ -43,17 +43,14 @@ class GameModal extends React.Component {
     }
 
     getGameLog() {
-        console.log("Attempting..." + this.state.previous_game + " - " + this.props.game_id);
         if (this.state.game_info != null && this.state.previous_game == this.props.game_id) {
             return;
         }
 
-        console.log("Made it past!")
         this.state.previous_game = this.props.game_id;
         this.state.modalIsOpen = true;
 
         $.getJSON('soccer/game/' + this.props.game_id, (event_array) => {
-            console.log("Got Response: " + JSON.stringify(event_array));
             let selected_team_score = 0;
             let opponent_score = 0;
 
@@ -68,7 +65,6 @@ class GameModal extends React.Component {
                             {
                                 event_array.map( (event_json) => {
 
-                                    console.log(event_json.team_id + " - " + this.props.selected_team_id);
                                     if (event_json.team_id == this.props.selected_team_id) {
                                         selected_team_score++;
                                     } else {
