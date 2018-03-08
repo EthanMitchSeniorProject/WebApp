@@ -8,28 +8,81 @@ class Statistics extends React.Component {
     constructor(props) {
         super(props);
         this.setState = this.setState.bind(this);
-        this.state = {"rotation_jsx": null};
+        this.state = {"rotationSelected_jsx": null, "rotationOpposing": null};
         this.most_recent_rotation = props.rotation;
+        this.most_recent_game = props.game;
     }
 
-    getStats = () => {
-        if ((this.state.rotation_jsx != null) && (this.props.rotation == this.most_recent_rotation)) {
+    getStatsSelectedTeam = () => {
+        if ((this.state.rotationSelected_jsx != null) && (this.props.rotation == this.most_recent_rotation) && (this.props.game == this.most_recent_game)) {
             return;
         }
 
-        if ((this.props.rotation == 0) || (this.props.team == "No Team Selected")) {
+        if ((this.props.rotation == 0) || (this.props.team == "No Team Selected") || (this.props.game == 0)) {
             return;
         }
 
         this.most_recent_rotation = this.props.rotation;
+        this.most_recent_game = this.props.game;
         this.most_recent_game_id = this.getGameId();
 
         $.getJSON('/vball/teams/' + this.props.rotation + '/totals/' + this.most_recent_game_id, (response) => {
             let total = response[0]['COUNT'];
             $.getJSON('/vball/teams/' + this.props.rotation + '/split/' + this.most_recent_game_id, (response_arr) => {
-                this.setState({rotation_jsx:
+                this.setState({rotationSelected_jsx:
                 (
-                    <table className={base_styles.tableSection}>
+                    <table className={base_styles.tableOne}>
+                        <tbody>
+                            <tr>
+                                <th>Result</th>
+                                <th>Percentage</th>
+                                <th>Amount</th>
+                            </tr>
+                            {
+                                response_arr.map( (individual_rotation) => {
+                                    return (
+                                        <tr>
+                                            <td>{individual_rotation['result']}</td>
+                                            <td>{Math.round((individual_rotation['COUNT'] / total) * 100)}%</td>
+                                            <td>{individual_rotation['COUNT']}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                            <tr>
+                                <td>TOTAL</td>
+                                <td>100%</td>
+                                <td>{total}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                )
+                });
+                console.log(response_arr);
+            });
+            console.log(total);
+        });
+    }
+
+    getStatsOpposingTeam = () => {
+        if ((this.state.rotationOpposing_jsx != null) && (this.props.rotation == this.most_recent_rotation) && (this.props.game == this.most_recent_game)) {
+            return;
+        }
+
+        if ((this.props.rotation == 0) || (this.props.team == "No Team Selected") || (this.props.game == 0)) {
+            return;
+        }
+
+        this.most_recent_rotation = this.props.rotation;
+        this.most_recent_game = this.props.game;
+        this.most_recent_game_id = this.getGameId();
+
+        $.getJSON('/vball/teams/' + this.props.rotation + '/totals/' + this.most_recent_game_id, (response) => {
+            let total = response[0]['COUNT'];
+            $.getJSON('/vball/teams/' + this.props.rotation + '/split/' + this.most_recent_game_id, (response_arr) => {
+                this.setState({rotationOpposing_jsx:
+                (
+                    <table className={base_styles.tableTwo}>
                         <tbody>
                             <tr>
                                 <th>Result</th>
@@ -90,7 +143,8 @@ class Statistics extends React.Component {
 
     render = () => {
         if ((this.props.rotation != 0) && (this.props.team != "") && (this.props.game != 0)) {
-            this.getStats();
+            this.getStatsSelectedTeam();
+            this.getStatsOpposingTeam();
         }
 
         return (
@@ -107,8 +161,13 @@ class Statistics extends React.Component {
                     <h3 className={base_styles.vballHeaderTwo}>Rotation: </h3>
                     <h3 className={base_styles.vballHeaderTwo}>{this.props.rotation}</h3>
                 </div>
+                <div className={base_styles.tableHeader}>
+                    <h4 className={base_styles.tableHeaderOne}>{this.props.team}</h4>
+                    <h4 className={base_styles.tableHeaderTwo}>{this.getTeamName()}</h4>
+                </div>
                 <div className={base_styles.tableSection}>
-                    {this.state.rotation_jsx}
+                    {this.state.rotationSelected_jsx}
+                    {this.state.rotationOpposing_jsx}
                 </div>
             </div>
         );
