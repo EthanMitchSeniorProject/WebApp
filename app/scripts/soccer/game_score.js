@@ -6,17 +6,18 @@ class GameView extends React.Component {
     constructor(props) {
         super(props);
         this.setState = this.setState.bind(this);
-        this.game_id = props.game_id;
-        this.team_id = props.team_id;
-        this.state = {score_jsx: null};
+        this.state = {score_jsx: null, previous_game_id: null, previous_team_id: null};
     }
 
     getScore = () => {
-        if (this.state.score_jsx != null) {
+        if (this.state.score_jsx != null && this.state.game_id == this.state.previous_game_id) {
             return;
         }
 
-        $.getJSON("/soccer/games/" + this.game_id + "/score", (score_json) => {
+        this.state.previous_game_id = this.props.game_id;
+        this.state.previous_team_id = this.props.team_id;
+
+        $.getJSON("/soccer/games/" + this.props.game_id + "/score", (score_json) => {
             console.log("score json" + JSON.stringify(score_json));
             var team_score = 0;
             var opponent_score = 0;
