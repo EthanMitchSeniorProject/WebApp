@@ -226,9 +226,7 @@ app.get('/vball/teams/:team_name/team_id', function(req, res) {
 		res.json(response);
 	}
 
-	let query = "SELECT * \
-				FROM vball_team \
-				WHERE school_name = '" + req.params.team_name + "';";
+	let query = "SELECT id FROM vball_team WHERE school_name = '" + req.params.team_name + "';";
 	queryRunner.runQuery(query, send_data_callback);
 })
 
@@ -347,23 +345,32 @@ app.get('/vball/teams/:team_id/:number_players/kills', function(req, res) {
 
 //TEST ROUTES FOR ETHAN
 // DO NOT REMOVE FOR NOW
-app.get('/vball/teams/:rotation', function(req, res) {
+app.get('/vball/teams/:rotation/totals/:game_id', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
 	}
 
-	let query = "SELECT COUNT(*) AS COUNT FROM vball_play WHERE rotation = " + req.params.rotation + ";";
+	let query = "SELECT COUNT(*) AS COUNT FROM vball_play WHERE rotation = " + req.params.rotation + " AND game_id = " + req.params.game_id + ";";
 	queryRunner.runQuery(query, send_data_callback);
-})
+});
 
-app.get('/vball/teams/:rotation/split', function(req, res) {
+app.get('/vball/teams/:rotation/split/:game_id', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
 	}
 
-	let query = "SELECT COUNT(*) AS COUNT, result FROM vball_play WHERE rotation = " + req.params.rotation + " GROUP BY result;";
+	let query = "SELECT COUNT(*) AS COUNT, result, winning_team_point FROM vball_play WHERE rotation = " + req.params.rotation + " AND game_id = " + req.params.game_id + " GROUP BY result, winning_team_point;";
 	queryRunner.runQuery(query, send_data_callback);
-})
+});
+
+app.get('/vball/teams/:id/team_name', function(req, res) {
+	let send_data_callback = function(response) {
+		res.json(response);
+	}
+
+	let query = "SELECT school_name FROM vball_team WHERE id = " + req.params.id + ";";
+	queryRunner.runQuery(query, send_data_callback);
+});
 
 app.use('/', express.static(path.join(__dirname, 'dist')))
 

@@ -10,7 +10,7 @@ class VballView extends React.Component {
     constructor(props) {
         super(props);
         this.setState = this.setState.bind(this);
-        this.state = {team: "No Team Selected", rotation: 0, game: 0}
+        this.state = {team: "", rotation: 0, game: 0}
     }
 
     setTeamState = (event) => {

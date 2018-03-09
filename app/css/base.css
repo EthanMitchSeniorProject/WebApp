@@ -90,7 +90,7 @@ td, th {
 .gameSelector {
     order: 4;
     flex: 1 1 15%;
-    width: 100px;
+    width: 150px;
 }
 
 .rotationSelector {
@@ -119,19 +119,66 @@ td, th {
     order: 2;
     display: flex;
     flex-flow: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.vballHeader {
+.vballHeaderOne {
     float: left;
     padding-right: 25px;
+    flex: 1 1 50%;
+    order: 1
+}
+
+.vballHeaderTwo {
+    float: left;
+    padding-right: 25px;
+    flex: 1 1 50%;
+    order: 2;
 }
 
 .statsHeader {
     flex: 1 1 20%;
     order: 1;
+    display: flex;
+    flex-flow: row;
+}
+
+.tableHeader {
+    flex: 1 1 20%;
+    order: 2;
+    display: flex;
+    flex-flow: row;
+}
+
+.tableHeaderOne {
+    flex: 1 1 50%;
+    order: 1;
+    margin-right: 50px;
+}
+
+.tableHeaderTwo {
+    flex: 1 1 50%;
+    order: 2;
 }
 
 .tableSection {
     flex: 1 1 40%;
+    order: 3;
+}
+
+.tables {
+    display: flex;
+    flex-flow: row;
+}
+
+.tableOne {
+    flex: 1 1 50%;
+    order: 1;
+    margin-right: 50px;
+}
+
+.tableTwo {
+    flex: 1 1 50%;
     order: 2;
 }
