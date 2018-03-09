@@ -165,6 +165,9 @@ td, th {
 .tableSection {
     flex: 1 1 40%;
     order: 3;
+}
+
+.tables {
     display: flex;
     flex-flow: row;
 }

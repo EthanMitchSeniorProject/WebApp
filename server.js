@@ -226,9 +226,7 @@ app.get('/vball/teams/:team_name/team_id', function(req, res) {
 		res.json(response);
 	}
 
-	let query = "SELECT * \
-				FROM vball_team \
-				WHERE school_name = '" + req.params.team_name + "';";
+	let query = "SELECT id FROM vball_team WHERE school_name = '" + req.params.team_name + "';";
 	queryRunner.runQuery(query, send_data_callback);
 })
 
@@ -361,7 +359,7 @@ app.get('/vball/teams/:rotation/split/:game_id', function(req, res) {
 		res.json(response);
 	}
 
-	let query = "SELECT COUNT(*) AS COUNT, result FROM vball_play WHERE rotation = " + req.params.rotation + " AND game_id = " + req.params.game_id + " GROUP BY result;";
+	let query = "SELECT COUNT(*) AS COUNT, result, winning_team_point FROM vball_play WHERE rotation = " + req.params.rotation + " AND game_id = " + req.params.game_id + " GROUP BY result, winning_team_point;";
 	queryRunner.runQuery(query, send_data_callback);
 });
 

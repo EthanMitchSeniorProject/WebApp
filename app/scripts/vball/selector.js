@@ -58,7 +58,7 @@ class Selector extends React.Component {
                 <label className={base_styles.teamSelectorLabel}>Team</label>
                 <select className={base_styles.teamSelector} onChange={this.props.setTeam}>
                     <option value="">--</option>
-                    <option value="Calvin College">Calvin College</option>
+                    <option value="Calvin">Calvin</option>
                 </select>
                 <label className={base_styles.gameSelectorLabel}>Game</label>
                 <select className={base_styles.gameSelector} onChange={this.props.setGame}>
