@@ -2,17 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import styles from '../../css/base.css';
+import TrendModal from './trend_modal.js';
 
 class PlayersView extends React.Component {
     constructor(props) {
         super(props);
         this.setState = this.setState.bind(this);
-        this.state = {"player_jsx": null}
+        this.state = {"player_jsx": null, "player_id_modal": null};
         this.most_recent_team = props.team;
     }
 
-    viewPlayerData = () => {
-        console.log("Click!");
+    viewPlayerTrendModal = (event) => {
+        console.log("Click to view player trend modal!");
+        this.setState({player_id_modal: event.target.value});
     }
 
     getPlayers = () => {
@@ -39,6 +41,7 @@ class PlayersView extends React.Component {
                                 <th>Red Cards</th>
                                 <th>Goals</th>
                                 <th>Assists</th>
+                                <th>Trend</th>
                             </tr>
                             {
                                 player_list.map( (player_json) => {
@@ -52,6 +55,7 @@ class PlayersView extends React.Component {
                                             <td>{player_json['red_cards']}</td>
                                             <td>{player_json['goals']}</td>
                                             <td>{player_json['assists']}</td>
+                                            <td><button value={player_json['id']}className="viewPlayerTrend" onClick={this.viewPlayerTrendModal}>View Trend</button></td>
                                         </tr>
                                     )
                                 })
@@ -63,6 +67,16 @@ class PlayersView extends React.Component {
                 });
             });
         });
+    }
+
+    getPlayerModal = () => {
+        if (this.state.player_id_modal == null) {
+            return null;
+        }
+
+        return (
+            <TrendModal player_id={this.state.player_id_modal}/>
+        )
     }
 
     render = () => {
@@ -77,6 +91,9 @@ class PlayersView extends React.Component {
                 <h1>{this.props.team}: Players</h1>
                 <div className="players">
                     {this.state.player_jsx}
+                </div>
+                <div className="playerModal">
+                    {this.getPlayerModal()}
                 </div>
             </div>
         )
