@@ -21,7 +21,9 @@ class TrendModal extends React.Component {
         this.state = {
             modalIsOpen: true,
             trend_jsx: null,
-            num_games: 1
+            num_games: 1,
+            previous_num_games: null,
+            previous_player_id: null
         };
 
         this.openModal = this.openModal.bind(this);
@@ -42,14 +44,21 @@ class TrendModal extends React.Component {
         this.setState({ modalIsOpen: false });
     }
 
-    updateNumGames(e) {
-        this.setState({num_games: e.target.value});
+    updateNumGames = (e) => {
+        let newValue = parseInt(e.target.value);
+        if (!isNaN(newValue)) {
+            this.setState({num_games: newValue});
+        }
     }
 
     getTrendInformation = () => {
-        if (this.state.trend_jsx != null) {
+        if (this.state.trend_jsx != null && this.state.previous_player_id == this.props.player_id && this.state.previous_num_games == this.state.num_games) {
             return;
         }
+
+        this.state.previous_num_games = this.state.num_games;
+        this.state.previous_player_id = this.props.player_id;
+        this.state.modalIsOpen = true;
 
         $.getJSON('/soccer/players/' + this.props.player_id + '/trend/' + this.state.num_games, (trend_response) => {
             this.setState({trend_jsx: (
@@ -84,7 +93,7 @@ class TrendModal extends React.Component {
                     contentLabel="Example Modal"
                 >
                     <button onClick={this.closeModal}>close</button>
-                    <p>Number of Games:</p><input type="number" min="0" onClick={this.updateNumGames} />
+                    <p>Number of Games:</p><input type="number" min="0" onKeyPress={this.updateNumGames} />
                     {this.state.trend_jsx}
                 </Modal>
             </div>
