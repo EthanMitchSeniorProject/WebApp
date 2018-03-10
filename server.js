@@ -148,17 +148,25 @@ app.get('/soccer/teams/:team_id/starters', function(req, res) {
 })
 
 //10
-app.get('/soccer/players/:player_id/:number_games/trend', function(req, res) {
+app.get('/soccer/players/:player_id/trend/:number_games', function(req, res) {
 	//TODO: Eventually this query should use a date rather than game_id to order
 	let send_data_callback = function(response) {
-		res.json(response);
+		console.log("Original database response: " + JSON.stringify(response));
+		let trend_data = {goals: 0, assists: 0, starts: 0};
+		for(var i = 0; i < response.length; i++) {
+			trend_data["goals"] += response[i]["goals"];
+			trend_data["assists"] += response[i]["assists"];
+			trend_data["starts"] += response[i]["starts"];
+		}
+		res.json(trend_data);
 	}
 
 	let query = "\
-	SELECT TOP " + req.params.number_games + " p.name, p.id, pg.game_id, pg.goals, pg.assists, pg.starts \
+	SELECT TOP " + req.params.number_games + " pg.game_id, SUM(pg.goals) as goals, SUM(pg.assists) as assists, SUM(CAST(pg.starts AS INT)) as starts \
 	FROM player p, player_game pg \
 	WHERE p.id = pg.player_id \
 	AND p.id = " + req.params.player_id + " \
+	GROUP BY pg.game_id \
 	ORDER BY pg.game_id DESC;"
 
 	queryRunner.runQuery(query, send_data_callback);
