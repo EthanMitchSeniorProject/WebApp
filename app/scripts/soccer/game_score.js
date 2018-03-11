@@ -10,7 +10,7 @@ class GameView extends React.Component {
     }
 
     getScore = () => {
-        if (this.state.score_jsx != null && this.state.game_id == this.state.previous_game_id) {
+        if (this.state.score_jsx != null && this.props.game_id == this.state.previous_game_id) {
             return;
         }
 

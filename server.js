@@ -151,7 +151,6 @@ app.get('/soccer/teams/:team_id/starters', function(req, res) {
 app.get('/soccer/players/:player_id/trend/:number_games', function(req, res) {
 	//TODO: Eventually this query should use a date rather than game_id to order
 	let send_data_callback = function(response) {
-		console.log("Original database response: " + JSON.stringify(response));
 		let trend_data = {goals: 0, assists: 0, starts: 0};
 		for(var i = 0; i < response.length; i++) {
 			trend_data["goals"] += response[i]["goals"];
