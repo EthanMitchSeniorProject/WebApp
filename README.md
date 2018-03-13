@@ -68,82 +68,26 @@
 
 ### Volleyball Endpoints
 
-#### 12. /vball/games
-
-    Return a list of all the volleyball games
-
-#### 13. /vball/teams
-
-    Return a list of all the volleyball teams
-
-#### 14. /vball/teams/:team_name/team_id
-
-    Send in team_name as a parameter
-
-    Return team_id based on team_name
-
-#### 15. /vball/teams/:team_id/players
-
-    Send in team_id as a parameter
-
-    Return a list of the players on the team
-
 #### 16. /vball/teams/:team_id/games
 
     Send in team_id as a parameter
 
     Return a list of the games for the given team
 
-#### 17. /vball/players/:player_id/player_games
+#### 17. /vball/teams/:rotation/totals/:game_id
 
-    Send in player_id as a parameter
+    Send in rotation and game_id as parameters
 
-    Return a list of the games for the given player
+    Return total count for how many plays the given rotation played in the given game
 
-#### 18. /vball/players/:player_name/player_id
+#### 18. /vball/teams/:rotation/split/:game_id
 
-    Send in player_name as a parameter
+    Send in rotation and game_id as parameters
 
-    Return player_id based on player_name
+    Return counts for the given rotation based on the results from the given game
 
-#### 19. /vball/teams/:team_id/:number_games/rotation_trends
-
-    Send in team_id and the number of games as parameters
-
-    Return team's rotation trends for the past number of games given
-
-#### 20. /vball/teams/:team_id/rotation_trends
+#### 19. /vball/teams/:id/team_name
 
     Send in team_id as a parameter
 
-    Return team's rotation trends
-
-#### 21. /vball/teams/:team_id/:number_players/top_players
-
-    Send in team_id and number of players as parameters
-
-    Return a list of the team's top players
-
-#### 22. /vball/teams/:team_id/:number_players/hitting_errors
-
-    Send in team_id and number of players as parameters
-
-    Return a list of the number of players of the team's leading errors
-
-#### 23. /vball/teams/:team_id/:number_players/digs
-
-    Send in team_id and number of players as parameters
-
-    Return a list of the number of players of the team's leading digs
-
-#### 24. /vball/teams/:team_id/assists
-
-    Send in team_id as a parameter
-
-    Return a list of the team's top assists
-
-#### 25. /vball/teams/:team_id/:number_players/kills
-
-    Send in team_id and number of players as parameters
-
-    Return a list of the number of players of the team's leading kills
+    Return the team name
