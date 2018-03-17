@@ -21,16 +21,6 @@ app.use(function(req, res, next) {
 --------------------------------------Soccer Routes----------------------------------------------
 */
 
-//1
-app.get('/soccer/games', function(req, res) {
-	let send_data_callback = function(response) {
-		res.json(response);
-	};
-
-	queryRunner.runQuery("SELECT * FROM game;", send_data_callback);
-})
-
-
 app.get('/soccer/game/:game_id', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -61,14 +51,6 @@ app.get('/soccer/teams/:team_name/team_id', function(req, res) {
 })
 
 //4
-/* Query:
-	SELECT *
-	FROM player p JOIN (SELECT player_id, SUM(goals) as goals, SUM(assists) as assists
-			FROM player_game
-			GROUP BY player_id) pg ON p.id = pg.player_id 
-	WHERE team_id = 0
-	AND games_played > 0;
-*/
 app.get('/soccer/teams/:team_id/players', function(req, res) {
 	let send_data_callback = function(response) {
 		res.json(response);
@@ -99,16 +81,6 @@ app.get('/soccer/teams/:team_id/games', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback);
 })
 
-//6
-app.get('/soccer/players/:player_id/player_games', function(req, res) {
-	let send_data_callback = function(response) {
-		res.json(response);
-	}
-
-	let query = "SELECT * FROM player_game WHERE player_id = " + req.params.player_id + ";"
-	queryRunner.runQuery(query, send_data_callback);
-})
-
 //7
 app.get('/soccer/players/:player_name/player_id', function(req, res) {
 	let send_data_callback = function(response) {
@@ -116,16 +88,6 @@ app.get('/soccer/players/:player_name/player_id', function(req, res) {
 	}
 
 	let query = "SELECT id FROM player WHERE name = '" + req.params.player_name + "';";
-	queryRunner.runQuery(query, send_data_callback);
-})
-
-//8
-app.get('/soccer/teams/:team_id/leading_scorers', function(req, res) {
-	let send_data_callback = function(response) {
-		res.json(response);
-	}
-
-	let query = "SELECT TOP 5 * FROM player WHERE team_id = '" + req.params.team_id + "' ORDER BY points DESC;";
 	queryRunner.runQuery(query, send_data_callback);
 })
 
