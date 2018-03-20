@@ -23,8 +23,8 @@ class StarterView extends React.Component {
             $.getJSON('/soccer/teams/' + team_id + '/starters', (starter_list) => {
                 this.setState({starter_jsx: 
                  (
-                    <div className="starter_table_div">
-                        <table className="starter_table">
+                    <div className={styles.starter_table_div}>
+                        <table className={styles.starter_table}>
                             <tbody>
                             <tr>
                                 <th>Name</th>
@@ -59,7 +59,7 @@ class StarterView extends React.Component {
 
         return (
             <div className="starterView">
-                <h1>{this.props.team}: Consistent Starters</h1>
+                <h1 className={styles.starter_header}>{this.props.team}: Consistent Starters</h1>
                 <div className="starters">
                     {this.state.starter_jsx}
                 </div>
