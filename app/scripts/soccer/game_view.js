@@ -33,8 +33,8 @@ class GameView extends React.Component {
                 }
 
                 this.setState({game_jsx:
-                    <div className="game_table_div">
-                        <table className="game_table">
+                    <div className={styles.game_table_div}>
+                        <table className={styles.game_table}>
                             <tbody>
                                 <tr>
                                     <th>Opponent</th>
@@ -104,9 +104,9 @@ class GameView extends React.Component {
         this.findGames();
 
         return (
-            <div className="game_view">
-                <h1>{this.props.team}: Games</h1>
-                <div className="games">
+            <div className={styles.game_view}>
+                <h1 className={styles.game_header}>{this.props.team}: Games</h1>
+                <div className={styles.games}>
                     {this.state.game_jsx}
                 </div>
                 <div className="gameModal">
