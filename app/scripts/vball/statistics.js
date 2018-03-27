@@ -121,20 +121,24 @@ class Statistics extends React.Component {
         return (
             <div className={base_styles.statistics}>
                 <div className={base_styles.statsHeader}>
-                    <h3 className={base_styles.vballHeaderOne}>Team: </h3>
-                    <h3 className={base_styles.vballHeaderOne}>{this.props.team}</h3>
-                    <h3 className={base_styles.vballHeaderOne}>Opposing Team: </h3>
-                    <h3 className={base_styles.vballHeaderOne}>{this.getTeamName()}</h3>
-                    <h3 className={base_styles.vballHeaderTwo}>Game ID: </h3>
-                    <h3 className={base_styles.vballHeaderTwo}>{this.getGameId()}</h3>
-                    <h3 className={base_styles.vballHeaderTwo}>Date: </h3>
-                    <h3 className={base_styles.vballHeaderTwo}>{this.getDate()}</h3>
-                    <h3 className={base_styles.vballHeaderTwo}>Rotation: </h3>
-                    <h3 className={base_styles.vballHeaderTwo}>{this.props.rotation}</h3>
+                    <div className={base_styles.vballHeaderOne}>
+                        <h3>Team: </h3>
+                        <h3>{this.props.team}</h3>
+                        <h3>Opposing Team: </h3>
+                        <h3>{this.getTeamName()}</h3>
+                        <h3>Date: </h3>
+                        <h3>{this.getDate()}</h3>
+                    </div>
+                    <div className={base_styles.vballHeaderTwo}>
+                        <h3>Server: </h3>
+                        <h3>temp</h3>
+                        <h3>Rotation: </h3>
+                        <h3>{this.props.rotation}</h3>
+                    </div>
                 </div>
                 <div className={base_styles.tableHeader}>
-                    <h4 className={base_styles.tableHeaderOne}>{this.props.team}</h4>
-                    <h4 className={base_styles.tableHeaderTwo}>{this.getTeamName()}</h4>
+                    <h2 className={base_styles.tableHeaderOne}>{this.props.team}</h2>
+                    <h2 className={base_styles.tableHeaderTwo}>{this.getTeamName()}</h2>
                 </div>
                 <div className={base_styles.tableSection}>
                     {this.state.rotation_jsx}
