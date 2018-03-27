@@ -33,7 +33,7 @@ function QueryRunner() {
 }
 
 //run a query
-QueryRunner.prototype.runQuery = function(query_text, callback_fn)
+QueryRunner.prototype.runQuery = function(query_text, callback_fn, res)
 { 
     this.pool.acquire(function(err, connection) {
 
@@ -54,7 +54,7 @@ QueryRunner.prototype.runQuery = function(query_text, callback_fn)
                 console.log("For query: " + query_text);
                 console.log(rowCount + ' row(s) returned');
                 console.log("\n\n\n");
-                callback_fn(response);
+                callback_fn(res, response);
                 connection.release();
             }
         );
