@@ -144,6 +144,11 @@ app.get('/vball/teams/:team_id/games', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback, res);
 })
 
+app.get('/vball/teams/:team_name/team_id', function(req, res) {
+	let query = "SELECT id FROM vball_team WHERE school_name = '" + req.params.team_name + "';";
+	queryRunner.runQuery(query, send_data_callback, res);
+})
+
 app.get('/vball/teams/:rotation/totals/:game_id', function(req, res) {
 	let query = "SELECT COUNT(*) AS COUNT FROM vball_play WHERE rotation = " + req.params.rotation + " AND game_id = " + req.params.game_id + ";";
 	queryRunner.runQuery(query, send_data_callback, res);

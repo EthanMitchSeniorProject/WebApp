@@ -12,7 +12,6 @@ class Selector extends React.Component {
         this.getAllGames();
     }
 
-    // TODO: Get team name from their team id
     getAllGames = () => {
         console.log("Adding games...");
         let current_team_id = 0;

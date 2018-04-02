@@ -79,39 +79,45 @@ td, th {
     display: flex;
     flex-flow: column;
     align-items: center;
+    align-content: flex-start;
+}
+
+.teamSelectorLabel {
+    order: 1;
+    flex: 1 1 5%;
+    padding-bottom: 10px;
 }
 
 .teamSelector {
     order: 2;
     flex: 1 1 15%;
+    padding-bottom: 100px;
     width: 150px;
+}
+
+.gameSelectorLabel {
+    order: 3;
+    flex: 1 1 5%;
+    padding-bottom: 10px;
 }
 
 .gameSelector {
     order: 4;
     flex: 1 1 15%;
+    padding-bottom: 100px;
     width: 150px;
+}
+
+.rotationSelectorLabel {
+    order: 5;
+    flex: 1 1 5%;
+    padding-bottom: 10px;
 }
 
 .rotationSelector {
     order: 6;
     flex: 1 1 15%;
     width: 100px;
-}
-
-.teamSelectorLabel {
-    order: 1;
-    flex: 1 1 5%;
-}
-
-.gameSelectorLabel {
-    order: 3;
-    flex: 1 1 5%;
-}
-
-.rotationSelectorLabel {
-    order: 5;
-    flex: 1 1 5%;
 }
 
 .statistics {
@@ -123,25 +129,27 @@ td, th {
     justify-content: center;
 }
 
-.vballHeaderOne {
-    float: left;
-    padding-right: 25px;
-    flex: 1 1 50%;
-    order: 1
-}
-
-.vballHeaderTwo {
-    float: left;
-    padding-right: 25px;
-    flex: 1 1 50%;
-    order: 2;
-}
-
 .statsHeader {
     flex: 1 1 20%;
     order: 1;
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
+}
+
+.vballHeaderOne {
+    flex: 1 1 50%;
+    order: 1;
+}
+
+.vballHeaderTwo {
+    flex: 1 1 50%;
+    order: 2;
+    align-content: center
+}
+
+h3 {
+    display: inline;
+    padding-right: 50px;
 }
 
 .tableHeader {
@@ -154,7 +162,7 @@ td, th {
 .tableHeaderOne {
     flex: 1 1 50%;
     order: 1;
-    margin-right: 50px;
+    margin-right: 200px;
 }
 
 .tableHeaderTwo {
