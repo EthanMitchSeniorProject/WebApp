@@ -68,10 +68,16 @@ td, th {
     min-width: 160px;
 }
 
+/************************************/
+/*******Vball View CSS***************/
+/************************************/
+
 .vballView {
     display: flex;
     flex-flow: row;
 }
+
+/**********Vball Selector View*******/
 
 .selector {
     flex: 1 1 20%;
@@ -84,41 +90,38 @@ td, th {
 
 .teamSelectorLabel {
     order: 1;
-    flex: 1 1 5%;
-    padding-bottom: 10px;
+    padding: 15px;
 }
 
 .teamSelector {
     order: 2;
-    flex: 1 1 15%;
-    padding-bottom: 100px;
     width: 150px;
+    padding: 15px;
 }
 
 .gameSelectorLabel {
     order: 3;
-    flex: 1 1 5%;
-    padding-bottom: 10px;
+    padding: 15px;
 }
 
 .gameSelector {
     order: 4;
-    flex: 1 1 15%;
-    padding-bottom: 100px;
     width: 150px;
+    padding: 15px;
 }
 
 .rotationSelectorLabel {
     order: 5;
-    flex: 1 1 5%;
-    padding-bottom: 10px;
+    padding: 15px;
 }
 
 .rotationSelector {
     order: 6;
-    flex: 1 1 15%;
     width: 100px;
+    padding: 15px;
 }
+
+/**********Vball Statistics View*******/
 
 .statistics {
     flex: 1 1 80%;
@@ -130,31 +133,36 @@ td, th {
 }
 
 .statsHeader {
-    flex: 1 1 20%;
+    flex: 1 1 10%;
     order: 1;
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
+    padding: 15px;
 }
 
 .vballHeaderOne {
     flex: 1 1 50%;
     order: 1;
+    margin-right: 50px;
 }
 
 .vballHeaderTwo {
     flex: 1 1 50%;
     order: 2;
-    align-content: center
 }
 
-h3 {
+.vballServers {
+    flex: 1 1 5%;
+    order: 2;
+}
+
+h4 {
     display: inline;
-    padding-right: 50px;
 }
 
 .tableHeader {
-    flex: 1 1 20%;
-    order: 2;
+    flex: 1 1 10%;
+    order: 3;
     display: flex;
     flex-flow: row;
 }
@@ -162,7 +170,7 @@ h3 {
 .tableHeaderOne {
     flex: 1 1 50%;
     order: 1;
-    margin-right: 200px;
+    margin-right: 150px;
 }
 
 .tableHeaderTwo {
@@ -172,7 +180,7 @@ h3 {
 
 .tableSection {
     flex: 1 1 40%;
-    order: 3;
+    order: 4;
 }
 
 .tables {
