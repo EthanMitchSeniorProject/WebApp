@@ -63,12 +63,12 @@ class TrendModal extends React.Component {
         $.getJSON('/soccer/players/' + this.props.player_id + '/trend/' + this.state.num_games, (trend_response) => {
             this.setState({trend_jsx: (
                 <div className="trendTable">
-                    <h1>Trend for last {this.state.num_games}</h1>
+                    <h1>Trend for last {this.state.num_games} game(s)</h1>
                     <table className="playerTrend">
                         <tr>
                             <th>Goals</th>
                             <th>Assists</th>
-                            <th>Starts</th>
+                            <th>Recorded Starts</th>
                         </tr>
                         <tr>
                             <td>{trend_response['goals']}</td>
