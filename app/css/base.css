@@ -30,6 +30,22 @@ footer {
     padding: 1rem;
 }
 
+button {
+    background-color: #460101;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    width: 90%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+
 body {
     background: #dba61e;
     font-family: serif;
@@ -197,4 +213,35 @@ h4 {
 .tableTwo {
     flex: 1 1 50%;
     order: 2;
+}
+
+.game_header {
+    display: block;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    text-align: center;
+}
+
+.game_table {
+    width: 100%;
+}
+
+.starter_table {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.starter_header {
+    width: 100%;
+    text-align: center; 
+}
+
+.game_table_div, .starter_table_div {
+    display: inline-block;
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+    align-content: center;
 }
