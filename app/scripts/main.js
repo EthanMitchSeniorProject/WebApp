@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TabView from './tab_view.js';
 import SoccerView from './soccer/soccer_view.js';
 import VballView from './vball/vball_view.js';
+import styles from '../css/base.css'
 
 class Main extends React.Component {
     constructor(props) {
@@ -32,7 +33,14 @@ class Main extends React.Component {
 
     renderNoSport = () => {
         return (
-            <TabView setState={this.setState}/>
+            <div className="no_sport_view">
+                <TabView setState={this.setState}/>
+                <div className={styles.welcomeHeader}>
+                    <h1>Welcome to the Calvin Scouting Report Application</h1>
+                    <h2>Creators: Mitch Stark and Ethan Clark</h2>
+                    <h3>Any issues contact elc3@students.calvin.edu</h3>
+                </div>
+            </div>
         )
     }
     

@@ -9,26 +9,24 @@ class Statistics extends React.Component {
         super(props);
         this.setState = this.setState.bind(this);
         this.state = {"rotation_jsx": null, "displayServersList": ""};
-        this.most_recent_rotation = props.rotation;
         this.most_recent_game = props.game;
     }
 
-    getStatsSelectedTeam = () => {
-        if ((this.state.rotation_jsx != null) && (this.props.rotation == this.most_recent_rotation) && (this.props.game == this.most_recent_game)) {
+    getStatsSelectedTeam = (rotation_num) => {
+        if ((this.state.rotation_jsx != null) && (this.props.game == this.most_recent_game)) {
             return;
         }
 
-        if ((this.props.rotation == "") || (this.props.team == "") || (this.props.game == "")) {
+        if ((this.props.team == "") || (this.props.game == "")) {
             return;
         }
 
-        this.most_recent_rotation = this.props.rotation;
         this.most_recent_game = this.props.game;
         this.most_recent_game_id = this.getGameId();
 
         $.getJSON("/vball/teams/" + this.props.team + "/team_id", (id) => {
             let selected_team_id = id[0]['id'];
-            $.getJSON('/vball/teams/' + this.props.rotation + '/split/' + this.most_recent_game_id, (response_arr) => {
+            $.getJSON('/vball/teams/' + rotation_num + '/split/' + this.most_recent_game_id, (response_arr) => {
 
                 var selectedTeamArray = [];
                 var opposingTeamArray = [];
@@ -41,7 +39,7 @@ class Statistics extends React.Component {
                     }
                 });
 
-                $.getJSON('/vball/teams/' + this.props.rotation + '/' + this.most_recent_game_id + '/servers', (server_arr) => {
+                $.getJSON('/vball/teams/' + rotation_num + '/' + this.most_recent_game_id + '/servers', (server_arr) => {
                     var serversList = "";
                     server_arr.forEach(server => {
                         if (serversList == "") {
@@ -124,46 +122,33 @@ class Statistics extends React.Component {
     }
 
     render = () => {
-        if ((this.props.rotation != "") && (this.props.team != "") && (this.props.game != "")) {
-            this.getStatsSelectedTeam();
+        if ((this.props.team != "") && (this.props.game != "")) {
+            this.getStatsSelectedTeam(1);
+            this.getStatsSelectedTeam(2);
+            this.getStatsSelectedTeam(3);
+            this.getStatsSelectedTeam(4);
+            this.getStatsSelectedTeam(5);
+            this.getStatsSelectedTeam(6);
         }
 
         return (
             <div className={base_styles.statistics}>
                 <h2>Rotation Statistics</h2>
                 <div className={base_styles.statsHeader}>
-                    <table className={base_styles.vballHeaderOne}>
+                    <table className={base_styles.vballHeader}>
                         <tbody>
                             <tr>
                                 <th>Team</th>
                                 <td>{this.props.team}</td>
-                            </tr>
-                            <tr>
                                 <th>Opponent</th>
                                 <td>{this.getTeamName()}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <table className={base_styles.vballHeaderTwo}>
-                        <tbody>
-                            <tr>
                                 <th>Date</th>
                                 <td>{this.getDate()}</td>
-                            </tr>
-                            <tr>
                                 <th>Rotation</th>
                                 <td>{this.props.rotation}</td>
                             </tr>
                         </tbody>
                     </table>
-                </div>
-                <div className={base_styles.vballServers}>
-                    <h4>Server(s): </h4>
-                    <h4>{this.state.displayServersList}</h4>
-                </div>
-                <div className={base_styles.tableHeader}>
-                    <h3 className={base_styles.tableHeaderOne}>{this.props.team}</h3>
-                    <h3 className={base_styles.tableHeaderTwo}>{this.getTeamName()}</h3>
                 </div>
                 <div className={base_styles.tableSection}>
                     {this.state.rotation_jsx}
