@@ -135,9 +135,20 @@ app.get('/soccer/games/:game_id/score', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback, res);
 })
 
+app.get('/soccer/teams/routes', function(req, res) {
+	let query = "SELECT * FROM soccer_team_route;";
+
+	queryRunner.runQuery(query, send_data_callback, res);
+})
+
 /*
 --------------------------------------Volleyball Routes----------------------------------------------
 */
+
+app.get('/vball/teams', function(req, res) {
+	let query = "SELECT * FROM vball_team;";
+	queryRunner.runQuery(query, send_data_callback, res);
+})
 
 app.get('/vball/teams/:team_id/games', function(req, res) {
 	let query = "SELECT * FROM vball_game WHERE home_team = " + req.params.team_id + " OR away_team = " + req.params.team_id + " ORDER BY game_date;"
@@ -164,16 +175,12 @@ app.get('/vball/teams/:id/team_name', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback, res);
 });
 
-app.get('/vball/teams/:rotation/:game_id/servers', function(req, res) {
-	let query = "SELECT DISTINCT vball_player.name FROM vball_player, vball_play WHERE vball_play.game_id = " + req.params.game_id + " AND vball_play.rotation = " + req.params.rotation + " AND vball_play.server_id = vball_player.id;";
-	queryRunner.runQuery(query, send_data_callback, res);
-});
-
 app.use('/', express.static(path.join(__dirname, 'dist')))
 
 //This is specifically setup for Heroku use
 //If port is given (Heroku) use that
 //Else, use 3000
+//TODO: Change port to 80
 app.listen(process.env.PORT || 3000, function() {
 	if (process.env.PORT) {
 		console.log('Listening on port ' + process.env.PORT + '!');
