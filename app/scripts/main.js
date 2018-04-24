@@ -3,13 +3,14 @@ import ReactDOM from 'react-dom';
 import TabView from './tab_view.js';
 import SoccerView from './soccer/soccer_view.js';
 import VballView from './vball/vball_view.js';
+import AddTeamView from './add_team_view.js';
 import styles from '../css/base.css'
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {"sport" : ""};
+        this.state = {"sport" : "Home"};
         this.setState = this.setState.bind(this);
     }
 
@@ -27,6 +28,15 @@ class Main extends React.Component {
             <div className="vball_view">
                 <TabView setState={this.setState}/>
                 <VballView/>
+            </div>
+        )
+    }
+
+    renderAddTeam = () => {
+        return (
+            <div className="add_team_view">
+                <TabView setState={this.setState}/>
+                <AddTeamView/>
             </div>
         )
     }
@@ -49,6 +59,8 @@ class Main extends React.Component {
             return this.renderSoccer();
         } else if (this.state.sport == "Volleyball") {
             return this.renderVball();
+        } else if (this.state.sport == "Add Team") {
+            return this.renderAddTeam();
         } else {
             return this.renderNoSport();
         }
