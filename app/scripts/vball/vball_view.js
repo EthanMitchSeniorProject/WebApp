@@ -10,15 +10,11 @@ class VballView extends React.Component {
     constructor(props) {
         super(props);
         this.setState = this.setState.bind(this);
-        this.state = {team: "", rotation: "", game: "", serverList: ""}
+        this.state = {team: "", game: "", serverList: ""}
     }
 
     setTeamState = (event) => {
         this.setState({team: event.target.value});
-    }
-
-    setRotationState = (event) => {
-        this.setState({rotation: event.target.value});
     }
 
     setGameState = (event) => {
@@ -28,7 +24,7 @@ class VballView extends React.Component {
     render = () => {
         return (
             <div className={base_styles.vballView}>
-                <Selector setTeam={this.setTeamState} setRotation={this.setRotationState} setGame={this.setGameState}/>
+                <Selector setTeam={this.setTeamState} setGame={this.setGameState}/>
                 <Statistics team={this.state.team} rotation={this.state.rotation} game={this.state.game}/>
             </div>
         )

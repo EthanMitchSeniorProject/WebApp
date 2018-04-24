@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import TabView from './tab_view.js';
 import SoccerView from './soccer/soccer_view.js';
 import VballView from './vball/vball_view.js';
+import AddTeamView from './add_team_view.js';
+import styles from '../css/base.css'
 
 class Main extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {"sport" : ""};
+        this.state = {"sport" : "Home"};
         this.setState = this.setState.bind(this);
     }
 
@@ -30,9 +32,25 @@ class Main extends React.Component {
         )
     }
 
+    renderAddTeam = () => {
+        return (
+            <div className="add_team_view">
+                <TabView setState={this.setState}/>
+                <AddTeamView/>
+            </div>
+        )
+    }
+
     renderNoSport = () => {
         return (
-            <TabView setState={this.setState}/>
+            <div className="no_sport_view">
+                <TabView setState={this.setState}/>
+                <div className={styles.welcomeHeader}>
+                    <h1>Welcome to the Calvin Scouting Report Application</h1>
+                    <h2>Creators: Mitch Stark and Ethan Clark</h2>
+                    <h3>Any issues contact elc3@students.calvin.edu</h3>
+                </div>
+            </div>
         )
     }
     
@@ -41,6 +59,8 @@ class Main extends React.Component {
             return this.renderSoccer();
         } else if (this.state.sport == "Volleyball") {
             return this.renderVball();
+        } else if (this.state.sport == "Add Team") {
+            return this.renderAddTeam();
         } else {
             return this.renderNoSport();
         }

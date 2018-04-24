@@ -8,6 +8,18 @@
  *      
  */
 
+html {
+    height: 100%;
+}
+
+body {
+    background: #dba61e;
+    font-family: serif;
+    display: flex;
+    flex-direction: column;
+    height: -30px;
+}
+
 header {
     text-align: center;
     color: white;
@@ -15,6 +27,7 @@ header {
     font-size: 40px;
     font-weight: bold;
     background: #460101;
+    flex: 0 0 auto;
 }
 
 footer {
@@ -24,39 +37,10 @@ footer {
     font-size: 20px;
     font-weight: bold;
     background: #460101;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 1rem;
+    flex: 0 0 auto;
 }
 
-button {
-    background-color: #460101;
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    width: 90%;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
-
-body {
-    background: #dba61e;
-    font-family: serif;
-}
-
-table, th, td {
-    border: solid 1px black;
-}
-
-td, th {
-    width: 150px;
+.welcomeHeader {
     text-align: center;
 }
 
@@ -65,7 +49,7 @@ td, th {
     border: none;
     color: #460101;
     padding: 15px 32px;
-    width: 49%;
+    width: 37%;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -74,146 +58,35 @@ td, th {
     border-radius: 25px;
 }
 
-.select_button {
-    background-color: #460101;
-    color: white;
-    border-style: solid;
-    border-width: 2px;
-    border-color: white;
+.add_team_button {
+    background-color: white;
+    border: none;
+    color: #460101;
     padding: 15px 32px;
-    min-width: 160px;
+    width: 11%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px;
+    border-radius: 25px;
+}
+
+.home_tab_button {
+    background-color: white;
+    border: none;
+    color: #460101;
+    padding: 15px 32px;
+    width: 11%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px;
+    border-radius: 25px;
 }
 
 /************************************/
-/*******Vball View CSS***************/
+/*******Soccer View CSS***************/
 /************************************/
-
-.vballView {
-    display: flex;
-    flex-flow: row;
-}
-
-/**********Vball Selector View*******/
-
-.selector {
-    flex: 1 1 20%;
-    order: 1;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    align-content: flex-start;
-}
-
-.teamSelectorLabel {
-    order: 1;
-    padding: 15px;
-}
-
-.teamSelector {
-    order: 2;
-    width: 150px;
-    padding: 15px;
-}
-
-.gameSelectorLabel {
-    order: 3;
-    padding: 15px;
-}
-
-.gameSelector {
-    order: 4;
-    width: 150px;
-    padding: 15px;
-}
-
-.rotationSelectorLabel {
-    order: 5;
-    padding: 15px;
-}
-
-.rotationSelector {
-    order: 6;
-    width: 100px;
-    padding: 15px;
-}
-
-/**********Vball Statistics View*******/
-
-.statistics {
-    flex: 1 1 80%;
-    order: 2;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.statsHeader {
-    flex: 1 1 10%;
-    order: 1;
-    display: flex;
-    flex-flow: row;
-    padding: 15px;
-}
-
-.vballHeaderOne {
-    flex: 1 1 50%;
-    order: 1;
-    margin-right: 50px;
-}
-
-.vballHeaderTwo {
-    flex: 1 1 50%;
-    order: 2;
-}
-
-.vballServers {
-    flex: 1 1 5%;
-    order: 2;
-}
-
-h4 {
-    display: inline;
-}
-
-.tableHeader {
-    flex: 1 1 10%;
-    order: 3;
-    display: flex;
-    flex-flow: row;
-}
-
-.tableHeaderOne {
-    flex: 1 1 50%;
-    order: 1;
-    margin-right: 150px;
-}
-
-.tableHeaderTwo {
-    flex: 1 1 50%;
-    order: 2;
-}
-
-.tableSection {
-    flex: 1 1 40%;
-    order: 4;
-}
-
-.tables {
-    display: flex;
-    flex-flow: row;
-}
-
-.tableOne {
-    flex: 1 1 50%;
-    order: 1;
-    margin-right: 50px;
-}
-
-.tableTwo {
-    flex: 1 1 50%;
-    order: 2;
-}
 
 .game_header {
     display: block;
@@ -244,4 +117,280 @@ h4 {
     margin-right: 25%;
     width: 50%;
     align-content: center;
+}
+
+button {
+    background-color: #460101;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    width: 90%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+table, th, td {
+    border: solid 1px black;
+}
+
+td, th {
+    width: 150px;
+    text-align: center;
+}
+
+.select_button {
+    background-color: #460101;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    padding: 15px 32px;
+    min-width: 160px;
+}
+
+/*********End Soccer CSS*************/
+
+
+/************************************/
+/*******Vball View CSS***************/
+/************************************/
+
+.vballView {
+    display: flex;
+    flex-flow: column;
+}
+
+/**********Vball Selector View*******/
+
+.selector {
+    flex: 1 1 auto;
+    order: 1;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.teamSelectorLabel {
+    order: 1;
+    margin-left: -100px;
+}
+
+.teamSelector {
+    order: 2;
+    width: 150px;
+    margin-left: -100px;
+}
+
+.gameSelectorLabel {
+    order: 3;
+    margin-left: -100px;
+}
+
+.gameSelector {
+    order: 4;
+    width: 300px;
+    margin-left: -100px;
+}
+
+/**********Vball Statistics View*******/
+
+.statistics {
+    flex: 1 1 auto;
+    order: 2;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.statsHeader {
+    flex: 1 1 10%;
+    order: 1;
+    display: flex;
+    flex-flow: row;
+    padding: 15px;
+}
+
+.vballHeader {
+    flex: 1 1 auto;
+    order: 1;
+}
+
+h4 {
+    display: inline;
+}
+
+.tableSectionLineOne {
+    flex: 1 1 40%;
+    order: 2;
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 50px;
+}
+
+.tableSectionLineTwo {
+    flex: 1 1 40%;
+    order: 3;
+    display: flex;
+    flex-flow: row;
+    margin-bottom: 50px;
+}
+
+.tableSectionLineThree {
+    flex: 1 1 40%;
+    order: 4;
+    display: flex;
+    flex-flow: row;
+}
+
+.RotationOne {
+    flex: 1 1 50%;
+    order: 1;
+    display: flex;
+    flex-flow: column;
+}
+
+.RotationTwo {
+    flex: 1 1 50%;
+    order: 2;
+    display: flex;
+    flex-flow: column;
+}
+
+.RotationThree {
+    flex: 1 1 50%;
+    order: 1;
+    display: flex;
+    flex-flow: column;
+}
+
+.RotationFour {
+    flex: 1 1 50%;
+    order: 2;
+    display: flex;
+    flex-flow: column;
+}
+
+.RotationFive {
+    flex: 1 1 50%;
+    order: 1;
+    display: flex;
+    flex-flow: column;
+}
+
+.RotationSix {
+    flex: 1 1 50%;
+    order: 2;
+    display: flex;
+    flex-flow: column;
+}
+
+.vballServersOne {
+    order: 1;
+    text-align: center;
+}
+
+.vballServersTwo {
+    order: 1;
+    text-align: center;
+}
+
+.vballServersThree {
+    order: 1;
+    text-align: center;
+}
+
+.vballServersFour {
+    order: 1;
+    text-align: center;
+}
+
+.vballServersFive {
+    order: 1;
+    text-align: center;
+}
+
+.vballServersSix {
+    order: 1;
+    text-align: center;
+}
+
+.tableSectionOne {
+    order: 2;
+    margin-right: 25px;
+}
+
+.tableSectionTwo {
+    order: 2;
+}
+
+.tableSectionThree {
+    order: 2;
+    margin-right: 25px;
+}
+
+.tableSectionFour {
+    order: 2;
+}
+
+.tableSectionFive {
+    order: 2;
+    margin-right: 25px;
+}
+
+.tableSectionSix {
+    order: 2;
+}
+
+.tables {
+    display: flex;
+    flex-flow: row;
+}
+
+.tableOne {
+    flex: 1 1 50%;
+    order: 1;
+    margin-right: 15px;
+}
+
+.tableTwo {
+    flex: 1 1 50%;
+    order: 2;
+}
+
+/*********End Vball CSS*************/
+
+/***********************************/
+/*********Add Team View CSS*********/
+/***********************************/
+
+.add_team_view {
+    text-align: center;
+}
+
+.sportSelector {
+    width: 100px;
+}
+
+.inputTeamNameItem {
+    width: 300px;
+}
+
+.inputTeamURLItem {
+    width: 300px;
+}
+
+.add_teamh4 {
+    display: block;
+}
+
+.add_team_submit_button {
+    width: 250px;
 }
