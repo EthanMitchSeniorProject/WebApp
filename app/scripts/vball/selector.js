@@ -82,16 +82,6 @@ class Selector extends React.Component {
                     <option value="">--</option>
                     {this.renderGames()}
                 </select>
-                <label className={base_styles.rotationSelectorLabel}>Rotation</label>
-                <select className={base_styles.rotationSelector} onChange={this.props.setRotation}>
-                    <option value="">--</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
             </div>
         );
     }
