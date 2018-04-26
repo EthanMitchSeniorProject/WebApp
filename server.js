@@ -175,6 +175,11 @@ app.get('/vball/teams/:id/team_name', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback, res);
 });
 
+app.get('/vball/teams/:rotation/:game_id/servers', function(req, res) {
+	let query = "SELECT DISTINCT vball_player.name FROM vball_player, vball_play WHERE vball_play.game_id = " + req.params.game_id + " AND vball_play.rotation = " + req.params.rotation + " AND vball_play.server_id = vball_player.id;";
+	queryRunner.runQuery(query, send_data_callback, res);
+});
+
 app.use('/', express.static(path.join(__dirname, 'dist')))
 
 //This is specifically setup for Heroku use
