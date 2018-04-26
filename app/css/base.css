@@ -373,6 +373,22 @@ h4 {
 
 .add_team_view {
     text-align: center;
+    display: flex;
+    flex-flow: row;
+}
+
+.add_team_instructions {
+    flex: 1 1 50%;
+    order: 1;
+}
+
+.add_team_form {
+    flex: 1 1 50%;
+    order: 2;
+}
+
+.instructions_vball {
+    margin-bottom: 100px;
 }
 
 .sportSelector {
@@ -387,10 +403,15 @@ h4 {
     width: 300px;
 }
 
+.add_teamh3 {
+    display: block;
+}
+
 .add_teamh4 {
     display: block;
 }
 
 .add_team_submit_button {
     width: 250px;
+    margin-top: 40px;
 }
