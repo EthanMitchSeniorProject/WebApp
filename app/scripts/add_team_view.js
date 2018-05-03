@@ -8,24 +8,28 @@ class AddTeamView extends React.Component {
     constructor(props) {
         super(props);
         this.setState = this.setState.bind(this);
-        this.state = {Sport: "", TeamName: "", TeamURL: ""};
+        this.state = {Sport: "", TeamName: "", TeamURL: "", alertStatus: ""};
     }
 
     handleSubmit = () => {
+        this.setState({"alertStatus": ""});
         console.log("Submit button clicked");
 
         if (this.state.Sport == "" || this.state.TeamName == "" || this.state.TeamURL == "") {
             console.log("Please make sure all values are filled in...");
+            this.setState({"alertStatus": "Please fill in all fields in the form"});
             return;
         }
 
         if (!this.state.TeamURL.startsWith("http://")) {
             console.log("Incorrect URL format...");
+            this.setState({"alertStatus": "Incorrect URL format"});
             return;
         }
 
         $.getJSON("/addTeam", {team_name: this.state.TeamName, team_url: this.state.TeamURL, sport: this.state.Sport}, (res) => {
             console.log(res);
+            this.setState({"alertStatus": ""});
         });
     }
 
@@ -51,12 +55,12 @@ class AddTeamView extends React.Component {
                     <div className={base_styles.instructions_vball}>
                         <h3 className={base_styles.add_teamh3}>Volleyball Example</h3>
                         <h4 className={base_styles.add_teamh4}>School Name: Calvin College</h4>
-                        <h4 className={base_styles.add_teamh4}>URL: http://calvinknights.com/sports/wvball/2017-18/schedule</h4>
+                        <h4 className={base_styles.add_teamh4}>URL: http://calvinknights.com/sports/wvball/2017-18/teams/calvin?view=profile&r=0&pos=</h4>
                     </div>
                     <div>
                         <h3 className={base_styles.add_teamh3}>Soccer Example</h3>
                         <h4 className={base_styles.add_teamh4}>School Name: Calvin College</h4>
-                        <h4 className={base_styles.add_teamh4}>URL: http://calvinknights.com/sports/msoc/2017-18/teams/calvin</h4>
+                        <h4 className={base_styles.add_teamh4}>URL: http://calvinknights.com/sports/msoc/2017-18/teams/calvin?view=profile&r=0&pos=kickers</h4>
                     </div>
                 </div>
                 <div className={base_styles.add_team_form}>
@@ -72,6 +76,7 @@ class AddTeamView extends React.Component {
                     <input className={base_styles.inputTeamURLItem} type="text" name="Team URL" onChange={this.updateURLInputValue}/>
                     <br></br>
                     <button className={base_styles.add_team_submit_button} onClick={this.handleSubmit}>Submit</button>
+                    <h2 className={base_styles.alertHeader}>{this.state.alertStatus}</h2>
                 </div>
             </div>
         )
