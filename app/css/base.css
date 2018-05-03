@@ -378,12 +378,12 @@ h4 {
 }
 
 .add_team_instructions {
-    flex: 1 1 50%;
+    flex: 1 1 40%;
     order: 1;
 }
 
 .add_team_form {
-    flex: 1 1 50%;
+    flex: 1 1 60%;
     order: 2;
 }
 
@@ -414,4 +414,9 @@ h4 {
 .add_team_submit_button {
     width: 250px;
     margin-top: 40px;
+}
+
+.alertHeader {
+    color: red;
+    font-weight: bold;
 }
