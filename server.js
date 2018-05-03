@@ -21,6 +21,34 @@ let send_data_callback = function(res, data_response) {
 	res.json(data_response);
 }
 
+let no_send_data_callback = function(res, data_response) {
+	console.log("Insert statement executed...");
+	res.json("SUCCESS");
+}
+
+/*
+--------------------------------------Common Route----------------------------------------------
+*/
+
+app.get('/addTeam', function(req, res) {
+	var table;
+	if (req.query.sport == "Soccer") {
+		table = "team";
+	} else {
+		table = "vball_team";
+	}
+
+	let call_query_callback = function(res, data_response) {
+		console.log(data_response[0]['MAX_ID']);
+		let new_id = data_response[0]['MAX_ID'] + 1
+		let query = "INSERT INTO " + table + " VALUES (" + new_id + ", '" + req.query.team_name + "', '" + req.query.team_url + "');";
+		console.log(query);
+		queryRunner.runQuery(query, no_send_data_callback, res);
+	}
+	
+	queryRunner.runQuery("SELECT MAX(ID) AS MAX_ID FROM " + table + ";", call_query_callback, res);
+})
+
 /*
 --------------------------------------Soccer Routes----------------------------------------------
 */
