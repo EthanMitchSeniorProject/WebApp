@@ -14,6 +14,7 @@ class VballView extends React.Component {
     }
 
     setTeamState = (event) => {
+        console.log("Team: " + event.target.value);
         this.setState({team: event.target.value});
     }
 

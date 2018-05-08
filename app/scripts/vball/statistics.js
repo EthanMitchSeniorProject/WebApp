@@ -10,7 +10,11 @@ class Statistics extends React.Component {
         this.setState = this.setState.bind(this);
         this.state = {"rotation_jsxOne": null, "rotation_jsxTwo": null, "rotation_jsxThree": null, "rotation_jsxFour": null, 
                     "rotation_jsxFive": null, "rotation_jsxSix": null, "displayServersListOne": "", "displayServersListTwo": "",
-                    "displayServersListThree": "", "displayServersListFour": "", "displayServersListFive": "", "displayServersListSix": ""};
+                    "displayServersListThree": "", "displayServersListFour": "", "displayServersListFive": "", "displayServersListSix": "",
+                    "displayRotationOneHeaders": "", "displayRotationTwoHeaders": "", "displayRotationThreeHeaders": "",
+                    "displayRotationFourHeaders": "", "displayRotationFiveHeaders": "", "displayRotationSixHeaders": "",
+                    "displayRotationOneHeadersReceiving": "", "displayRotationTwoHeadersReceiving": "", "displayRotationThreeHeadersReceiving": "",
+                    "displayRotationFourHeadersReceiving": "", "displayRotationFiveHeadersReceiving": "", "displayRotationSixHeadersReceiving": ""};
         this.most_recent_game = props.game;
     }
 
@@ -25,7 +29,9 @@ class Statistics extends React.Component {
 
         this.most_recent_game_id = this.getGameId();
 
-        $.getJSON("/vball/teams/" + this.props.team + "/team_id", (id) => {
+        let team_name = this.displaySelectedTeamName();
+
+        $.getJSON("/vball/teams/" + team_name + "/team_id", (id) => {
             let selected_team_id = id[0]['id'];
             $.getJSON('/vball/teams/1/split/' + this.most_recent_game_id, (response_arr) => {
 
@@ -40,7 +46,7 @@ class Statistics extends React.Component {
                     }
                 });
 
-                $.getJSON('/vball/teams/1/' + this.most_recent_game_id + '/servers', (server_arr) => {
+                $.getJSON('/vball/teams/1/' + this.most_recent_game_id + '/' + selected_team_id + '/servers', (server_arr) => {
                     var serversList = "Rotation 1 Server(s):";
                     server_arr.forEach(server => {
                         if (serversList == "Rotation 1 Server(s):") {
@@ -90,7 +96,7 @@ class Statistics extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                        ), displayServersListOne: serversList})
+                        ), displayServersListOne: serversList, displayRotationOneHeaders: "Serving", displayRotationOneHeadersReceiving: "Receiving"})
                 });
             });
         });
@@ -107,7 +113,9 @@ class Statistics extends React.Component {
 
         this.most_recent_game_id = this.getGameId();
 
-        $.getJSON("/vball/teams/" + this.props.team + "/team_id", (id) => {
+        let team_name = this.displaySelectedTeamName();
+
+        $.getJSON("/vball/teams/" + team_name + "/team_id", (id) => {
             let selected_team_id = id[0]['id'];
             $.getJSON('/vball/teams/2/split/' + this.most_recent_game_id, (response_arr) => {
 
@@ -122,7 +130,7 @@ class Statistics extends React.Component {
                     }
                 });
 
-                $.getJSON('/vball/teams/2/' + this.most_recent_game_id + '/servers', (server_arr) => {
+                $.getJSON('/vball/teams/2/' + this.most_recent_game_id + '/' + selected_team_id + '/servers', (server_arr) => {
                     var serversList = "Rotation 2 Server(s):";
                     server_arr.forEach(server => {
                         if (serversList == "Rotation 2 Server(s):") {
@@ -172,7 +180,7 @@ class Statistics extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                        ), displayServersListTwo: serversList})
+                        ), displayServersListTwo: serversList, displayRotationTwoHeaders: "Serving", displayRotationTwoHeadersReceiving: "Receiving"})
                 });
             });
         });
@@ -189,7 +197,9 @@ class Statistics extends React.Component {
 
         this.most_recent_game_id = this.getGameId();
 
-        $.getJSON("/vball/teams/" + this.props.team + "/team_id", (id) => {
+        let team_name = this.displaySelectedTeamName();
+
+        $.getJSON("/vball/teams/" + team_name + "/team_id", (id) => {
             let selected_team_id = id[0]['id'];
             $.getJSON('/vball/teams/3/split/' + this.most_recent_game_id, (response_arr) => {
 
@@ -204,7 +214,7 @@ class Statistics extends React.Component {
                     }
                 });
 
-                $.getJSON('/vball/teams/3/' + this.most_recent_game_id + '/servers', (server_arr) => {
+                $.getJSON('/vball/teams/3/' + this.most_recent_game_id + '/' + selected_team_id + '/servers', (server_arr) => {
                     var serversList = "Rotation 3 Server(s):";
                     server_arr.forEach(server => {
                         if (serversList == "Rotation 3 Server(s):") {
@@ -254,7 +264,7 @@ class Statistics extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                        ), displayServersListThree: serversList})
+                        ), displayServersListThree: serversList, displayRotationThreeHeaders: "Serving", displayRotationThreeHeadersReceiving: "Receiving"})
                 });
             });
         });
@@ -271,7 +281,9 @@ class Statistics extends React.Component {
 
         this.most_recent_game_id = this.getGameId();
 
-        $.getJSON("/vball/teams/" + this.props.team + "/team_id", (id) => {
+        let team_name = this.displaySelectedTeamName();
+
+        $.getJSON("/vball/teams/" + team_name + "/team_id", (id) => {
             let selected_team_id = id[0]['id'];
             $.getJSON('/vball/teams/4/split/' + this.most_recent_game_id, (response_arr) => {
 
@@ -286,7 +298,7 @@ class Statistics extends React.Component {
                     }
                 });
 
-                $.getJSON('/vball/teams/4/' + this.most_recent_game_id + '/servers', (server_arr) => {
+                $.getJSON('/vball/teams/4/' + this.most_recent_game_id + '/' + selected_team_id + '/servers', (server_arr) => {
                     var serversList = "Rotation 4 Server(s):";
                     server_arr.forEach(server => {
                         if (serversList == "Rotation 4 Server(s):") {
@@ -336,7 +348,7 @@ class Statistics extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                        ), displayServersListFour: serversList})
+                        ), displayServersListFour: serversList, displayRotationFourHeaders: "Serving", displayRotationFourHeadersReceiving: "Receiving"})
                 });
             });
         });
@@ -353,7 +365,9 @@ class Statistics extends React.Component {
 
         this.most_recent_game_id = this.getGameId();
 
-        $.getJSON("/vball/teams/" + this.props.team + "/team_id", (id) => {
+        let team_name = this.displaySelectedTeamName();
+
+        $.getJSON("/vball/teams/" + team_name + "/team_id", (id) => {
             let selected_team_id = id[0]['id'];
             $.getJSON('/vball/teams/5/split/' + this.most_recent_game_id, (response_arr) => {
 
@@ -368,7 +382,7 @@ class Statistics extends React.Component {
                     }
                 });
 
-                $.getJSON('/vball/teams/5/' + this.most_recent_game_id + '/servers', (server_arr) => {
+                $.getJSON('/vball/teams/5/' + this.most_recent_game_id + '/' + selected_team_id + '/servers', (server_arr) => {
                     var serversList = "Rotation 5 Server(s):";
                     server_arr.forEach(server => {
                         if (serversList == "Rotation 5 Server(s):") {
@@ -418,7 +432,7 @@ class Statistics extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                        ), displayServersListFive: serversList})
+                        ), displayServersListFive: serversList, displayRotationFiveHeaders: "Serving", displayRotationFiveHeadersReceiving: "Receiving"})
                 });
             });
         });
@@ -435,7 +449,9 @@ class Statistics extends React.Component {
 
         this.most_recent_game_id = this.getGameId();
 
-        $.getJSON("/vball/teams/" + this.props.team + "/team_id", (id) => {
+        let team_name = this.displaySelectedTeamName();
+
+        $.getJSON("/vball/teams/" + team_name + "/team_id", (id) => {
             let selected_team_id = id[0]['id'];
             $.getJSON('/vball/teams/6/split/' + this.most_recent_game_id, (response_arr) => {
 
@@ -450,7 +466,7 @@ class Statistics extends React.Component {
                     }
                 });
 
-                $.getJSON('/vball/teams/6/' + this.most_recent_game_id + '/servers', (server_arr) => {
+                $.getJSON('/vball/teams/6/' + this.most_recent_game_id + '/' + selected_team_id + '/servers', (server_arr) => {
                     var serversList = "Rotation 6 Server(s):";
                     server_arr.forEach(server => {
                         if (serversList == "Rotation 6 Server(s):") {
@@ -500,19 +516,29 @@ class Statistics extends React.Component {
                                     </tbody>
                                 </table>
                             </div>
-                        ), displayServersListSix: serversList})
+                        ), displayServersListSix: serversList, displayRotationSixHeaders: "Serving", displayRotationSixHeadersReceiving: "Receiving"})
                 });
             });
         });
     }
 
-    getTeamName = () => {
+    getTeamNameOpponent = () => {
         if (this.props.game == "") {
             return "";
         }
         let second_index = this.props.game.search(" 2");
         let first_index = this.props.game.search(":");
         return this.props.game.slice(first_index+1, second_index);
+    }
+
+    displaySelectedTeamName = () => {
+        if (this.props.team == "") {
+            return "";
+        }
+
+        let length = this.props.team.length;
+        let first_index = this.props.team.search(": ");
+        return this.props.team.slice(first_index+2, length+1);
     }
 
     getDate = () => {
@@ -551,9 +577,9 @@ class Statistics extends React.Component {
                         <tbody>
                             <tr>
                                 <th>Team</th>
-                                <td>{this.props.team}</td>
+                                <td>{this.displaySelectedTeamName()}</td>
                                 <th>Opponent</th>
-                                <td>{this.getTeamName()}</td>
+                                <td>{this.getTeamNameOpponent()}</td>
                                 <th>Date</th>
                                 <td>{this.getDate()}</td>
                             </tr>
@@ -565,6 +591,10 @@ class Statistics extends React.Component {
                         <div className={base_styles.vballServersOne}>
                             <h4>{this.state.displayServersListOne}</h4>
                         </div>
+                        <div className={base_styles.vballRotationOneHeaders}>
+                            <h5>{this.state.displayRotationOneHeaders}</h5>
+                            <h5>{this.state.displayRotationOneHeadersReceiving}</h5>
+                        </div>
                         <div className={base_styles.tableSectionOne}>
                             {this.state.rotation_jsxOne}
                         </div>
@@ -572,6 +602,10 @@ class Statistics extends React.Component {
                     <div className={base_styles.RotationTwo}>
                         <div className={base_styles.vballServersTwo}>
                             <h4>{this.state.displayServersListTwo}</h4>
+                        </div>
+                        <div className={base_styles.vballRotationTwoHeaders}>
+                            <h5>{this.state.displayRotationTwoHeaders}</h5>
+                            <h5>{this.state.displayRotationTwoHeadersReceiving}</h5>
                         </div>
                         <div className={base_styles.tableSectionTwo}>
                             {this.state.rotation_jsxTwo}
@@ -583,6 +617,10 @@ class Statistics extends React.Component {
                         <div className={base_styles.vballServersThree}>
                             <h4>{this.state.displayServersListThree}</h4>
                         </div>
+                        <div className={base_styles.vballRotationThreeHeaders}>
+                            <h5>{this.state.displayRotationThreeHeaders}</h5>
+                            <h5>{this.state.displayRotationThreeHeadersReceiving}</h5>
+                        </div>
                         <div className={base_styles.tableSectionThree}>
                             {this.state.rotation_jsxThree}
                         </div>
@@ -590,6 +628,10 @@ class Statistics extends React.Component {
                     <div className={base_styles.RotationFour}>
                         <div className={base_styles.vballServersFour}>
                             <h4>{this.state.displayServersListFour}</h4>
+                        </div>
+                        <div className={base_styles.vballRotationFourHeaders}>
+                            <h5>{this.state.displayRotationFourHeaders}</h5>
+                            <h5>{this.state.displayRotationFourHeadersReceiving}</h5>
                         </div>
                         <div className={base_styles.tableSectionFour}>
                             {this.state.rotation_jsxFour}
@@ -601,6 +643,10 @@ class Statistics extends React.Component {
                         <div className={base_styles.vballServersFive}>
                             <h4>{this.state.displayServersListFive}</h4>
                         </div>
+                        <div className={base_styles.vballRotationFiveHeaders}>
+                            <h5>{this.state.displayRotationFiveHeaders}</h5>
+                            <h5>{this.state.displayRotationFiveHeadersReceiving}</h5>
+                        </div>
                         <div className={base_styles.tableSectionFive}>
                             {this.state.rotation_jsxFive}
                         </div>
@@ -608,6 +654,10 @@ class Statistics extends React.Component {
                     <div className={base_styles.RotationSix}>
                         <div className={base_styles.vballServersSix}>
                             <h4>{this.state.displayServersListSix}</h4>
+                        </div>
+                        <div className={base_styles.vballRotationSixHeaders}>
+                            <h5>{this.state.displayRotationSixHeaders}</h5>
+                            <h5>{this.state.displayRotationSixHeadersReceiving}</h5>
                         </div>
                         <div className={base_styles.tableSectionSix}>
                             {this.state.rotation_jsxSix}

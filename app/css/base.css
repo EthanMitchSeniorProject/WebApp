@@ -172,32 +172,42 @@ td, th {
     order: 1;
     display: flex;
     flex-flow: row;
-    justify-content: space-evenly;
-    align-content: center;
-    align-items: center;
-    text-align: center;
+}
+
+.selectorTeamSection {
+    flex: 1 1 50%;
+    order: 1;
+    display: flex;
+    flex-flow: row;
+}
+
+.selectorGameSection {
+    flex: 1 1 50%;
+    order: 2;
+    display: flex;
+    flex-flow: row;
 }
 
 .teamSelectorLabel {
     order: 1;
-    margin-left: -100px;
+    margin-right: 100px;
+    margin-left: 100px;
 }
 
 .teamSelector {
     order: 2;
-    width: 150px;
-    margin-left: -100px;
+    width: 300px;
+    margin-right: 75px;
 }
 
 .gameSelectorLabel {
-    order: 3;
-    margin-left: -100px;
+    order: 1;
+    margin-right: 75px;
 }
 
 .gameSelector {
-    order: 4;
+    order: 2;
     width: 300px;
-    margin-left: -100px;
 }
 
 /**********Vball Statistics View*******/
@@ -322,31 +332,67 @@ h4 {
     text-align: center;
 }
 
-.tableSectionOne {
+.vballRotationOneHeaders {
     order: 2;
+    text-align: center;
+}
+
+.vballRotationTwoHeaders {
+    order: 2;
+    text-align: center;
+}
+
+.vballRotationThreeHeaders {
+    order: 2;
+    text-align: center;
+}
+
+.vballRotationFourHeaders {
+    order: 2;
+    text-align: center;
+}
+
+.vballRotationFiveHeaders {
+    order: 2;
+    text-align: center;
+}
+
+.vballRotationSixHeaders {
+    order: 2;
+    text-align: center;
+}
+
+h5 {
+    display: inline-block;
+    margin-right: 75px;
+    margin-left: 75px;
+}
+
+.tableSectionOne {
+    order: 3;
     margin-right: 25px;
 }
 
 .tableSectionTwo {
-    order: 2;
+    order: 3;
 }
 
 .tableSectionThree {
-    order: 2;
+    order: 3;
     margin-right: 25px;
 }
 
 .tableSectionFour {
-    order: 2;
+    order: 3;
 }
 
 .tableSectionFive {
-    order: 2;
+    order: 3;
     margin-right: 25px;
 }
 
 .tableSectionSix {
-    order: 2;
+    order: 3;
 }
 
 .tables {
