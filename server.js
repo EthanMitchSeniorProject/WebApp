@@ -59,7 +59,7 @@ app.get('/soccer/game/:game_id', function(req, res) {
 
 //2
 app.get('/soccer/teams', function(req, res) {
-	queryRunner.runQuery("SELECT * FROM team;", send_data_callback, res);
+	queryRunner.runQuery('SELECT * FROM team WHERE url_route IS NOT NULL;', send_data_callback, res);
 })
 
 //3
