@@ -178,8 +178,13 @@ app.get('/vball/teams', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback, res);
 })
 
+app.get('/vball/teams/with_routes', function(req, res) {
+	let query = "SELECT id, school_name FROM vball_team WHERE url_route <> 'null'";
+	queryRunner.runQuery(query, send_data_callback, res);
+})
+
 app.get('/vball/teams/:team_id/games', function(req, res) {
-	let query = "SELECT * FROM vball_game WHERE home_team = " + req.params.team_id + " OR away_team = " + req.params.team_id + " ORDER BY game_date;"
+	let query = "SELECT * FROM vball_game WHERE team_collecting = " + req.params.team_id + " ORDER BY game_date;"
 	queryRunner.runQuery(query, send_data_callback, res);
 })
 
@@ -203,8 +208,8 @@ app.get('/vball/teams/:id/team_name', function(req, res) {
 	queryRunner.runQuery(query, send_data_callback, res);
 });
 
-app.get('/vball/teams/:rotation/:game_id/servers', function(req, res) {
-	let query = "SELECT DISTINCT vball_player.name FROM vball_player, vball_play WHERE vball_play.game_id = " + req.params.game_id + " AND vball_play.rotation = " + req.params.rotation + " AND vball_play.server_id = vball_player.id;";
+app.get('/vball/teams/:rotation/:game_id/:team_id/servers', function(req, res) {
+	let query = "SELECT DISTINCT vball_player.name FROM vball_player, vball_play WHERE vball_play.game_id = " + req.params.game_id + " AND vball_play.rotation = " + req.params.rotation + " AND vball_play.server_id = vball_player.id AND vball_player.team_id = " + req.params.team_id + ";";
 	queryRunner.runQuery(query, send_data_callback, res);
 });
 
