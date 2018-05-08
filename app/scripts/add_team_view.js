@@ -27,6 +27,24 @@ class AddTeamView extends React.Component {
             return;
         }
 
+        if (this.state.TeamURL.search("/sports/") == -1) {
+            console.log("Incorrect URL format...");
+            this.setState({"alertStatus": "Incorrect URL format"});
+            return;
+        }
+
+        if (this.state.TeamURL.search("/2017-18/") == -1) {
+            console.log("Incorrect URL format...");
+            this.setState({"alertStatus": "Incorrect URL format"});
+            return;
+        }
+
+        if (!this.state.TeamURL.search("&r=0&pos=") == -1) {
+            console.log("Incorrect URL format...");
+            this.setState({"alertStatus": "Incorrect URL format"});
+            return;
+        }
+
         $.getJSON("/addTeam", {team_name: this.state.TeamName, team_url: this.state.TeamURL, sport: this.state.Sport}, (res) => {
             console.log(res);
             this.setState({"alertStatus": "Team Added Successfully"});
