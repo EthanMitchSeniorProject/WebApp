@@ -1,93 +1,129 @@
-# WebApp
+# Calvin Scouting Report Web Application
 
-## API Documentation
+## Web Server API Documentation
+
+### Common Endpoints
+
+#### 1. /addTeam
+
+    Gets the max id from either the team or vball_team table
+
+    Inserts a new team into either the team or vball_team table
 
 ### Soccer Endpoints
 
-#### 1. /soccer/games
+#### 2. /soccer/game/:game_id
 
-    Return a list of all the soccer games
+    Parameter: game_id
 
-#### 2. /soccer/teams
+    Return: List of events from the game
 
-    Return a list of all the soccer teams
+#### 3. /soccer/teams
+
+    Parameter: none
+
+    Return: List of all the soccer teams to be scraped for data
     
-#### 3. /soccer/teams/:team_name/team_id
+#### 4. /soccer/teams/:team_name/team_id
 
-    Send in team_name as a parameter
+    Parameter: team_name
 
-    Return team_id based on the team_name
+    Return: Array of information on the team
     
-#### 4. /soccer/teams/:team_id/players
+#### 5. /soccer/teams/:team_id/players
 
-    Send in team_id as a parameter
+    Parameter: team_id
 
-    Return a list of all the players from that team
+    Return: List of all players from the team
 
-#### 5. /soccer/teams/:team_id/games
+#### 6. /soccer/teams/:team_id/games
 
-    Send in team_id as a parameter
+    Parameter: team_id
 
-    Return a list of all the games that team was a part of
+    Return: List of all games for the team
 
-#### 6. /soccer/players/:player_id/player_games
-
-    Send in player_id as a parameter
-
-    Return a list of all the games for the given player
-    
 #### 7. /soccer/players/:player_name/player_id
 
-    Send in player_name as a parameter
+    Parameter: player_name
 
-    Return player_id for the given player
- 
-#### 8. /soccer/teams/:team_id/leading_scorers
+    Return: Integer id for the player
+    
+#### 8. /soccer/players/:team_id/starters
 
-    Send in team_id as a parameter
+    Parameter: team_id
 
-    Return a list of the team's leading scorings
+    Return: List of players who have played in a game for the team
 
-#### 9. /soccer/teams/:team_id/starters
+#### 9. /soccer/players/:player_id/trend/:number_games
 
-    Send in team_id as a parameter
+    Parameters: player_id, number_games
 
-    Return a list of the team's starting lineup
+    Return: The number of goals, assists, and starts for the player in the past number of games
 
-#### 10. /soccer/players/:player_id/:number_games/trend
+#### 10. /soccer/teams/:team_id/:number_games/trend
 
-    Send in player_id and the number of games as parameters
+    Parameters: team_id, number_games
 
-    Return player's trends for the past number of games given
+    Return: Team information for the team for the past number of games
 
-#### 11. /soccer/teams/:team_id/:number_games/trend
+#### 11. /soccer/games/:game_id/score
 
-    Send in team_id and the number of games as parameters
+    Parameter: game_id
 
-    Return team's trends for the past number of games given
+    Return: The final score of the game
+
+#### 12. /soccer/teams/routes
+
+    Parameter: none
+
+    Return: List of team routes
 
 ### Volleyball Endpoints
 
-#### 16. /vball/teams/:team_id/games
+#### 13. /vball/teams
 
-    Send in team_id as a parameter
+    Parameter: none
 
-    Return a list of the games for the given team
+    Return: List of all volleyball teams
+
+#### 14. /vball/teams/with_routes
+
+    Parameter: none
+
+    Return: List of all volleyball teams to be scraped for data
+
+#### 15. /vball/teams/:team_id/games
+
+    Parameter: team_id
+
+    Return: List of all the games for the team
+
+#### 16. /vball/teams/:team_name/team_id
+
+    Parameter: team_name
+
+    Return: Id for the team
 
 #### 17. /vball/teams/:rotation/totals/:game_id
 
-    Send in rotation and game_id as parameters
+    Parameters: rotation, game_id
 
-    Return total count for how many plays the given rotation played in the given game
+    Return: Counts of all results from the rotation from the game
 
 #### 18. /vball/teams/:rotation/split/:game_id
 
-    Send in rotation and game_id as parameters
+    Parameters: rotation, game_id
 
-    Return counts for the given rotation based on the results from the given game
+    Return: Counts of all results from the rotation from the game
 
-#### 19. /vball/teams/:id/team_name
+#### 19. /vball/teams/:team_id/team_name
 
-    Send in team_id as a parameter
+    Parameters: team_id
 
-    Return the team name
+    Return: Team name from the team id
+
+#### 20. /vball/teams/:rotation/:game_id/:team_id/servers
+
+    Parameters: rotation, game_id, team_id
+
+    Return: List of all players' names who served in for the team in the rotation in the game
